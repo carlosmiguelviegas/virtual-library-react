@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import './Login.css';
-import api from './../../utils/api';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -26,7 +25,9 @@ const Login = () => {
     event.preventDefault();
     axios.post(LOGIN_URL, loginForm)
     .then((res) => {
-      api['token'] = res['headers'].get('token');
+      // For now I'll use the local storage to keep the token
+      // Later, the token will be retrieved using Redux
+      localStorage.setItem('token', res['headers'].get('token'));
       navigate('/home');
     })
     .catch(err => console.log(err));
