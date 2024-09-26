@@ -8,10 +8,7 @@
   border: 1px solid #9E9E9E;
   border-radius: 10px;
   padding: 10px;
-}
-
-.cardHeader {
-  
+  box-shadow: 5px 5px 6px rgba(128, 128, 128, 0.5);
 }
 
 .cardContent {
@@ -44,4 +41,9 @@
 .label, .property {
   font-family: sans-serif;
   font-size: 15px;
+}
+
+.icon {
+  font-size: 22px;
+  color: #ffc784;
 }

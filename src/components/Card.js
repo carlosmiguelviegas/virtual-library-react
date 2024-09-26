@@ -1,5 +1,6 @@
 import Avatar from './../assets/female_user.png';
 import styles from './Card.module.css';
+import { MdOutlineMailOutline } from 'react-icons/md';
 
 const Card = ({ user }) => {
 
@@ -19,7 +20,7 @@ const Card = ({ user }) => {
           <p className={styles.property}>{user['role'] === 'admin' ? 'Administrator' : 'User'}</p>
         </section>
         <section className={styles.email}>
-          <label className={styles.label}>Email:</label>
+          <MdOutlineMailOutline className={styles.icon} />
           <p className={styles.property}>{user['email']}</p>
         </section>
       </section>
