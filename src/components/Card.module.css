@@ -47,3 +47,12 @@
   font-size: 22px;
   color: #ffc784;
 }
+
+.disableIcon {
+  font-size: 22px;
+  color: #ffc784;
+  position: absolute;
+  top: -9px;
+  right: -3px;
+  cursor: pointer;
+}
