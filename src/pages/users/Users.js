@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+
 import api from "../../utils/api";
+import UsersItem from "./UsersItem";
+import styles from './Users.module.css';
 
 const GET_USERS_URL = '/users';
-
-let usersList = [];
 
 const Users = () => {
 
@@ -15,8 +16,8 @@ const Users = () => {
   
       try {
         const response = await api.get(GET_USERS_URL);
-        usersList = response['data'];
-        setUsers(users => [...users, usersList]); console.log(usersList);
+        const usersList = response['data'];
+        setUsers((users) =>  users.concat([ ...usersList ] ));
       } catch (err) {
         console.log(err);
       }
@@ -26,9 +27,12 @@ const Users = () => {
     onGetAllActiveUsers();
   
   }, []);
+  const usersListToDisplay = users.map(user => <UsersItem key={user['_id']} user={user} />);
 
   return (
-    <h2>Users</h2>
+    <section className={styles.usersContainer}>
+      {usersListToDisplay}
+    </section>
   );
 };
 

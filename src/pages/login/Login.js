@@ -2,8 +2,7 @@ import { useState } from 'react';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-import './Login.css';
+import styles from './Login.module.css';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -34,8 +33,8 @@ const Login = () => {
   };
 
   return (
-    <form className="form" onSubmit={handlerOnSubmit}>
-      <section className='form-container'>
+    <form className={styles.form} onSubmit={handlerOnSubmit}>
+      <section className={styles.formContainer}>
         <label htmlFor='email'>Email</label>
         <input type='email' name='email' id='email' value={loginForm['email']} onChange={handlerOnChange} />
         <label htmlFor='password'>Password</label>
