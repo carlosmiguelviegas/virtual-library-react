@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import api from "../../utils/api";
-import Card from './../../components/Card';
+import UserCard from '../../components/cards/UserCard';
 import styles from './Users.module.css';
 
 const GET_USERS_URL = '/users';
@@ -18,7 +18,7 @@ const Users = () => {
       try {
         const response = await api.get(GET_USERS_URL);
         const usersList = response['data'];
-        setUsers((users) => users.concat([ ...usersList ] ));
+        setUsers(users => users.concat([ ...usersList ]));
       } catch (err) {
         console.log(err);
       }
@@ -37,7 +37,7 @@ const Users = () => {
 
   }
 
-  const usersListToDisplay = users.map(user => <Card key={user['_id']} user={user} onDisableUser={onDisableUser} />);
+  const usersListToDisplay = users.map(user => <UserCard key={user['_id']} user={user} onDisableUser={onDisableUser} />);
 
   return (
     <section className={styles.usersContainer}>
