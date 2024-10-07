@@ -5,7 +5,6 @@
 .userCard {
   width: 170px;
   height: 250px;
-  border: 1px solid #9E9E9E;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 8px 8px rgba(128, 128, 128, 0.5);
@@ -46,13 +45,4 @@
 .icon {
   font-size: 22px;
   color: #ffc784;
-}
-
-.disableIcon {
-  font-size: 22px;
-  color: #ffc784;
-  position: absolute;
-  top: -9px;
-  right: -3px;
-  cursor: pointer;
 }
