@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
+import Button from './../../components/buttons/Button';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -39,7 +40,7 @@ const Login = () => {
         <input type='email' name='email' id='email' value={loginForm['email']} onChange={handlerOnChange} />
         <label htmlFor='password'>Password</label>
         <input type='password' name='password' id='password' value={loginForm['password']} onChange={handlerOnChange} />
-        <button type='submit'>Sign in</button>
+        <Button type='submit' primary>Sign in</Button>
       </section>
     </form>
   );

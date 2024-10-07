@@ -15,6 +15,6 @@
   border: 2px solid #d1d1d1;
   border-radius: 38px;
   padding: 46px 0px;
-  box-shadow: 12px 7px 7px rgba(128, 128, 128, 0.5);
+  box-shadow: 0 8px 10px rgba(128, 128, 128, 0.5);
   background-image: linear-gradient(to top right, #00BCD4, #FFEB3B);
 }

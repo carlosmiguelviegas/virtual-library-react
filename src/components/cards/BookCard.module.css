@@ -2,13 +2,12 @@
   width: 170px;
 }
 
-.userCard {
+.bookCard {
   width: 170px;
   height: 250px;
-  border: 1px solid #9E9E9E;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 5px 5px 6px rgba(128, 128, 128, 0.5);
+  box-shadow: 0 8px 8px rgba(128, 128, 128, 0.5);
 }
 
 .cardContent {
@@ -19,7 +18,7 @@
   top: 10px;
 }
 
-.name, .role, .email {
+.title, .category, .availability{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -41,18 +40,4 @@
 .label, .property {
   font-family: sans-serif;
   font-size: 15px;
-}
-
-.icon {
-  font-size: 22px;
-  color: #ffc784;
-}
-
-.disableIcon {
-  font-size: 22px;
-  color: #ffc784;
-  position: absolute;
-  top: -9px;
-  right: -3px;
-  cursor: pointer;
 }
