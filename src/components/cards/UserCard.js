@@ -1,11 +1,12 @@
-import Avatar from './../assets/female_user.png';
-import styles from './Card.module.css';
-import { MdOutlineMailOutline, MdOutlinePersonOff } from 'react-icons/md';
+import Avatar from './../../assets/female_user.png';
+import styles from './UserCard.module.css';
+import { MdOutlineMailOutline } from 'react-icons/md';
+import ButtonCard from './../buttons/ButtonCard';
 
-const Card = ({ user, onDisableUser }) => {
+const UserCard = ({ user, onDisableUser }) => {
 
-  const handlerOnClick = userId => {
-    onDisableUser(userId);
+  const handlerOnClick = () => {
+    onDisableUser(user['_id']); console.log(user['_id']);
   };
 
   return (
@@ -15,18 +16,18 @@ const Card = ({ user, onDisableUser }) => {
       </section>
       <section className={styles.cardContent}>
         <p className={styles.infoLabel}>INFORMATION</p>
-        <MdOutlinePersonOff className={styles.disableIcon} onClick={() => handlerOnClick(user['_id'])} />
+        <ButtonCard handlerOnClick={handlerOnClick} />
         <section className={styles.name}>
           <label className={styles.label}>Name:</label>
-          <p className={styles.property}>{user['name']}</p>
+          <p className={styles.property}>{user && user['name']}</p>
         </section>
         <section className={styles.role}>
           <label className={styles.label}>Role:</label>
-          <p className={styles.property}>{user['role'] === 'admin' ? 'Administrator' : 'User'}</p>
+          <p className={styles.property}>{user && user['role'] === 'admin' ? 'Administrator' : 'User'}</p>
         </section>
         <section className={styles.email}>
           <MdOutlineMailOutline className={styles.icon} />
-          <p className={styles.property}>{user['email']}</p>
+          <p className={styles.property}>{user && user['email']}</p>
         </section>
       </section>
     </section>
@@ -34,4 +35,4 @@ const Card = ({ user, onDisableUser }) => {
 
 };
 
-export default Card;
+export default UserCard;
