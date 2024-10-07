@@ -1,11 +1,12 @@
 import Avatar from './../../assets/female_user.png';
 import styles from './UserCard.module.css';
-import { MdOutlineMailOutline, MdOutlinePersonOff } from 'react-icons/md';
+import { MdOutlineMailOutline } from 'react-icons/md';
+import ButtonCard from './../buttons/ButtonCard';
 
 const UserCard = ({ user, onDisableUser }) => {
 
-  const handlerOnClick = userId => {
-    onDisableUser(userId);
+  const handlerOnClick = () => {
+    onDisableUser(user['_id']); console.log(user['_id']);
   };
 
   return (
@@ -15,7 +16,7 @@ const UserCard = ({ user, onDisableUser }) => {
       </section>
       <section className={styles.cardContent}>
         <p className={styles.infoLabel}>INFORMATION</p>
-        <MdOutlinePersonOff className={styles.disableIcon} onClick={() => handlerOnClick(user['_id'])} />
+        <ButtonCard handlerOnClick={handlerOnClick} />
         <section className={styles.name}>
           <label className={styles.label}>Name:</label>
           <p className={styles.property}>{user && user['name']}</p>

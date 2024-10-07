@@ -10,17 +10,15 @@ const BookCard = ({ book }) => {
       </section>
       <section className={styles.cardContent}>
         <p className={styles.infoLabel}>INFORMATION</p>
-        {/* <MdOutlinePersonOff className={styles.disableIcon} onClick={() => handlerOnClick(user['_id'])} /> */}
         <section className={styles.name}>
-          <label className={styles.label}>Name:</label>
+          <label className={styles.label}>Title:</label>
           <p className={styles.property}>{book && book['title']}</p>
         </section>
         <section className={styles.role}>
-          <label className={styles.label}>Role:</label>
+          <label className={styles.label}>Category:</label>
           <p className={styles.property}>{book && book['category']}</p>
         </section>
         <section className={styles.email}>
-          {/* <MdOutlineMailOutline className={styles.icon} /> */}
           <p className={styles.property}>{book && book['availability'] ? 'Available' : 'Not Available'}</p>
         </section>
       </section>
