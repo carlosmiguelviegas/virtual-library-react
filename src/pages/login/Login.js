@@ -35,11 +35,16 @@ const Login = () => {
 
   return (
     <form className={styles.form} onSubmit={handlerOnSubmit}>
-      <section className={styles.formContainer}>
+      <section className={styles.titleContainer}>
+        <h2>Sign in</h2>
+      </section>
+      <section className={styles.contentContainer}>
         <label htmlFor='email'>Email</label>
         <input type='email' name='email' id='email' value={loginForm['email']} onChange={handlerOnChange} />
         <label htmlFor='password'>Password</label>
         <input type='password' name='password' id='password' value={loginForm['password']} onChange={handlerOnChange} />
+      </section>
+      <section className={styles.actionsContainer}>
         <Button type='submit' primary>Sign in</Button>
       </section>
     </form>
