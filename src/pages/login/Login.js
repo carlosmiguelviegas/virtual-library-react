@@ -4,15 +4,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import Button from './../../components/buttons/Button';
+import InputField from '../../components/inputs/InputField';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
 const Login = () => {
 
   const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
+  const [ showPassword, setShowPassword ] = useState(false);
   const navigate = useNavigate();
 
-  const handlerOnChange = (event) => {
+  const handlerOnChange = event => {
     setLoginForm(
       {
         ...loginForm,
@@ -21,7 +23,9 @@ const Login = () => {
     );
   };
 
-  const handlerOnSubmit = (event) => {
+  const handlerOnChangePassword = () => setShowPassword(showPassword => !showPassword);
+
+  const handlerOnSubmit = event => {
     event.preventDefault();
     axios.post(LOGIN_URL, loginForm)
     .then((res) => {
@@ -39,10 +43,12 @@ const Login = () => {
         <h2>Sign in</h2>
       </section>
       <section className={styles.contentContainer}>
-        <label htmlFor='email'>Email</label>
-        <input type='email' name='email' id='email' value={loginForm['email']} onChange={handlerOnChange} />
-        <label htmlFor='password'>Password</label>
-        <input type='password' name='password' id='password' value={loginForm['password']} onChange={handlerOnChange} />
+        <InputField type={'email'} label='Email' name={'email'} value={loginForm['email']} handlerOnChange={handlerOnChange} />
+        <InputField type={showPassword ? 'text' : 'password'} label='Password' name={'password'} value={loginForm['password']} handlerOnChange={handlerOnChange} />
+        <section className={styles.showPasswordInput}>
+          <InputField type={'checkbox'} value={showPassword} handlerOnChange={handlerOnChangePassword} />
+          <p className={styles.showPassword}>Show Password</p>
+        </section>
       </section>
       <section className={styles.actionsContainer}>
         <Button type='submit' primary>Sign in</Button>

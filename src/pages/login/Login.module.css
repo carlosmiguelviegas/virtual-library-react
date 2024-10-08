@@ -1,6 +1,6 @@
 .form {
   width: 26%;
-  height: 46%;
+  height: 43%;
   border-radius: 10px;
   position: absolute;
   top: 30vh;
@@ -29,4 +29,19 @@
   justify-content: center;
   position: relative;
   top: -25px;
+}
+
+.showPasswordInput {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  position: relative;
+  top: -13px;
+  left: -28px;
+  margin-top: 6px;
+}
+
+.showPassword {
+  margin: 0px;
 }
