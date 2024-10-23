@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import api from "../../utils/api";
 import UserCard from '../../components/cards/UserCard';
+import Loading from './../../components/spinner/Loading';
 import styles from './Users.module.css';
 
 const GET_USERS_URL = '/users';
@@ -39,7 +40,7 @@ const Users = () => {
 
   const usersListToDisplay = users.map(user => <UserCard key={user['_id']} user={user} onDisableUser={onDisableUser} />);
 
-  return (
+  return !usersListToDisplay.length ? <Loading /> : (
     <section className={styles.usersContainer}>
       {usersListToDisplay}
     </section>
