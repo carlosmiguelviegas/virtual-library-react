@@ -52,7 +52,7 @@ const Login = () => {
         </section>
       </section>
       <section className={styles.buttonsSection}>
-        <Button type='submit' primary>{SIGN_IN_LABEL}</Button>
+        <Button type={'submit'}>{SIGN_IN_LABEL}</Button>
       </section>
     </form>
   );
