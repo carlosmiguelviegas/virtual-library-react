@@ -1,6 +1,12 @@
+import { HOME_PAGE_WELCOME } from '../../utils/titles-and-labels';
+import styles from './Home.module.css';
+
 const Home = () => {
   return (
-    <h2>Home</h2>
+    <section>
+      <h1 className={styles.title}>{HOME_PAGE_WELCOME}</h1>
+      <hr className={styles.divider} />
+    </section>
   );
 };
 

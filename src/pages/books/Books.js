@@ -4,6 +4,8 @@ import api from './../../utils/api';
 import BookCard from '../../components/cards/BookCard';
 import Loading from '../../components/spinner/Loading';
 import styles from './Books.module.css';
+import Button from '../../components/buttons/Button';
+import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE } from '../../utils/titles-and-labels';
 
 const GET_BOOKS_URL = '/books';
 
@@ -17,7 +19,8 @@ const Books = () => {
       
       try {
         const response = await api.get(GET_BOOKS_URL);
-        setBooks(books => books.concat([ ...response['data'] ]));
+        const totalElements = response['data']['total'];
+        setBooks(books => books.concat([ ...response['data']['booksList'] ]));
       } catch(err) {
         console.log(err);
       }
@@ -31,8 +34,15 @@ const Books = () => {
   const booksToDisplay = books.map(book => <BookCard key={book['_id']} book={book} />)
 
   return !booksToDisplay.length ? <Loading /> : (
-    <section className={styles.booksContainer}>
-      {booksToDisplay}
+    <section>
+      <h1 className={styles.title}>{BOOKS_PAGE_TITLE}</h1>
+      <hr className={styles.divider} />
+      <section className={styles.button}>
+      <Button>{BOOKS_PAGE_CREATE_LABEL}</Button>
+      </section>
+      {/* <section className={styles.booksContainer}>
+        {booksToDisplay}
+      </section> */}
     </section>
   );
 

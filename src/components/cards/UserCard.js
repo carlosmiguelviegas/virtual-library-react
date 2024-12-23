@@ -2,6 +2,7 @@ import Avatar from './../../assets/female_user.png';
 import styles from './UserCard.module.css';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import ButtonCard from './../buttons/ButtonCard';
+import { USER_CARD_ADMIN_ROLE, USER_CARD_INFORMATION, USER_CARD_NAME, USER_CARD_ROLE, USER_CARD_USER_ROLE } from '../../utils/titles-and-labels';
 
 const UserCard = ({ user, onDisableUser }) => {
 
@@ -15,19 +16,19 @@ const UserCard = ({ user, onDisableUser }) => {
         <img className={styles.avatar} src={Avatar} alt='user' />
       </section>
       <section className={styles.cardContent}>
-        <p className={styles.infoLabel}>INFORMATION</p>
+        <p className={styles.infoLabel}>{USER_CARD_INFORMATION}</p>
         <ButtonCard handlerOnClick={handlerOnClick} />
         <section className={styles.name}>
-          <label className={styles.label}>Name:</label>
-          <p className={styles.property}>{user && user['name']}</p>
+          <label className={styles.label}>{USER_CARD_NAME}</label>
+          <p className={styles.property}>{user['name']}</p>
         </section>
         <section className={styles.role}>
-          <label className={styles.label}>Role:</label>
-          <p className={styles.property}>{user && user['role'] === 'admin' ? 'Administrator' : 'User'}</p>
+          <label className={styles.label}>{USER_CARD_ROLE}</label>
+          <p className={styles.property}>{user['role'] === 'admin' ? USER_CARD_ADMIN_ROLE : USER_CARD_USER_ROLE}</p>
         </section>
         <section className={styles.email}>
           <MdOutlineMailOutline className={styles.icon} />
-          <p className={styles.property}>{user && user['email']}</p>
+          <p className={styles.property}>{user['email']}</p>
         </section>
       </section>
     </section>
@@ -36,3 +37,5 @@ const UserCard = ({ user, onDisableUser }) => {
 };
 
 export default UserCard;
+
+          
