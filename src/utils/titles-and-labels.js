@@ -10,6 +10,8 @@ const USER_CARD_ROLE = 'Role:';
 const USER_CARD_ADMIN_ROLE = 'Administrator';
 const USER_CARD_USER_ROLE = 'User';
 const USERS_PAGE_TITLE = 'Library Users';
+const BOOKS_PAGE_TITLE = 'Library Books';
+const BOOKS_PAGE_CREATE_LABEL = 'Create';
 
 export {  
           SIGN_IN_TITLE,
@@ -23,5 +25,7 @@ export {
           USER_CARD_ROLE,
           USER_CARD_ADMIN_ROLE,
           USER_CARD_USER_ROLE,
-          USERS_PAGE_TITLE
+          USERS_PAGE_TITLE,
+          BOOKS_PAGE_TITLE,
+          BOOKS_PAGE_CREATE_LABEL
        };
