@@ -18,7 +18,8 @@ const Users = () => {
   
       try {
         const response = await api.get(GET_USERS_URL);
-        const usersList = response['data'];
+        const usersList = response['data']['usersList'];
+        const totalElements = response['data']['total'];
         setUsers(users => users.concat([ ...usersList ]));
       } catch (err) {
         console.log(err);
