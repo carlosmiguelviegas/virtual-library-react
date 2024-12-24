@@ -13,11 +13,11 @@ const SelectDropdown = ({ label, list, handlerOnChange }) => {
     <div className={styles.formControl}>
       <label className={styles.label}>{label}</label>
       <select className={styles.select}>
-      <section>
-        {optionsToDisplay}
-      </section>
-    </select>
-  </div>
+        <section>
+          {optionsToDisplay}
+        </section>
+      </select>
+    </div>
   );
 };
 
