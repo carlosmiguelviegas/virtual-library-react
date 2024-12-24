@@ -9,7 +9,7 @@ import { SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_SHO
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
-const Login = ({ setCurrentUser }) => {
+const Login = ({ checkLogin }) => {
 
   const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
   const [ showPassword, setShowPassword ] = useState(false);
@@ -30,7 +30,7 @@ const Login = ({ setCurrentUser }) => {
     event.preventDefault();
     axios.post(LOGIN_URL, loginForm)
     .then((res) => {
-      setCurrentUser(res['data']);
+      checkLogin(res['data']);
       // For now I'll use the local storage to keep the token
       // Later, the token will be retrieved using Redux
       localStorage.setItem('token', res['headers'].get('token'));
