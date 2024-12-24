@@ -1,8 +1,8 @@
-import Avatar from './../../assets/female_user.png';
+import Avatar from './../../../assets/female_user.png';
 import styles from './UserCard.module.css';
 import { MdOutlineMailOutline } from 'react-icons/md';
-import ButtonCard from './../buttons/ButtonCard';
-import { USER_CARD_ADMIN_ROLE, USER_CARD_INFORMATION, USER_CARD_NAME, USER_CARD_ROLE, USER_CARD_USER_ROLE } from '../../utils/titles-and-labels';
+import ButtonCard from './../../buttons/button-card/ButtonCard';
+import { USER_CARD_ADMIN_ROLE, USER_CARD_INFORMATION, USER_CARD_NAME, USER_CARD_ROLE, USER_CARD_USER_ROLE } from '../../../utils/titles-and-labels';
 
 const UserCard = ({ user, onDisableUser }) => {
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 import api from "../../utils/api";
-import UserCard from '../../components/cards/UserCard';
-import Loading from './../../components/spinner/Loading';
+import UserCard from '../../components/cards/user-card/UserCard';
+import Loading from '../../components/spinner/loading/Loading';
 import styles from './Users.module.css';
 import { USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 
@@ -20,7 +20,7 @@ const Users = () => {
       try {
         const response = await api.get(GET_USERS_URL);
         const usersList = response['data']['usersList'];
-        const totalElements = response['data']['total'];
+        const totalElements = response['data']['total']; console.log(totalElements);
         setUsers(users => users.concat([ ...usersList ]));
       } catch (err) {
         console.log(err);
