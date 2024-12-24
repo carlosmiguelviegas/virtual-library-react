@@ -19,7 +19,7 @@ const Books = () => {
       
       try {
         const response = await api.get(GET_BOOKS_URL);
-        const totalElements = response['data']['total'];
+        const totalElements = response['data']['total']; console.log(totalElements);
         setBooks(books => books.concat([ ...response['data']['booksList'] ]));
       } catch(err) {
         console.log(err);
