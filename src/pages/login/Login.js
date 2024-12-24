@@ -3,8 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
-import Button from './../../components/buttons/Button';
-import InputField from '../../components/inputs/InputField';
+import Button from '../../components/buttons/button/Button';
+import InputField from '../../components/inputs/input-field/InputField';
 import { SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_SHOW_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';

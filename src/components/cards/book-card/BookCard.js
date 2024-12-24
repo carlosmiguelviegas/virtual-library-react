@@ -1,4 +1,4 @@
-import Avatar from './../../assets/female_user.png';
+import Avatar from './../../../assets/female_user.png';
 import styles from './BookCard.module.css';
 
 const BookCard = ({ book }) => {

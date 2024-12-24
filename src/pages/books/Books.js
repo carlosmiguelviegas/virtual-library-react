@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 import api from './../../utils/api';
-import BookCard from '../../components/cards/BookCard';
-import Loading from '../../components/spinner/Loading';
+import BookCard from '../../components/cards/book-card/BookCard';
+import Loading from '../../components/spinner/loading/Loading';
 import styles from './Books.module.css';
-import Button from '../../components/buttons/Button';
+import Button from '../../components/buttons/button/Button';
 import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE } from '../../utils/titles-and-labels';
 
 const GET_BOOKS_URL = '/books';
