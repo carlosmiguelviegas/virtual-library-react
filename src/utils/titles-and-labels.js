@@ -3,6 +3,8 @@ const SIGN_IN_LABEL = 'Sign in';
 const SIGN_IN_EMAIL_LABEL = 'Email';
 const SIGN_IN_PASSWORD_LABEL = 'Password';
 const SIGN_IN_SHOW_PASSWORD_LABEL = 'Show Password';
+const SIGN_IN_LINK = 'login';
+const SIGN_UP_LINK = 'register';
 const HOME_LINK = 'home';
 const BOOKS_LINK = 'books';
 const USERS_LINK = 'users';
@@ -23,6 +25,8 @@ export {
           SIGN_IN_EMAIL_LABEL,
           SIGN_IN_PASSWORD_LABEL,
           SIGN_IN_SHOW_PASSWORD_LABEL,
+          SIGN_IN_LINK,
+          SIGN_UP_LINK,
           HOME_LINK,
           BOOKS_LINK,
           USERS_LINK,

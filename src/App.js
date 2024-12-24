@@ -10,14 +10,14 @@ import { BOOKS_LINK, HOME_LINK, USERS_LINK } from './utils/titles-and-labels';
 
 const App = () => {
 
-  const [ currentUser, setCurrentUser ] = useState({});
-  let isLoggedIn = false;
+  const [ currentUser, setCurrentUser ] = useState({ role: '' });
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   let list;
 
   const checkLogin = user => {
     setCurrentUser(user);
-    isLoggedIn = currentUser?.role ? true : false;
-    if ('admin' === currentUser?.role) {
+    setIsLoggedIn(currentUser?.role ? true : false);
+    if (currentUser?.role && 'admin' === currentUser?.role) {
       list = [ HOME_LINK, BOOKS_LINK, USERS_LINK ];
     } else {
       list = [ HOME_LINK, BOOKS_LINK, USERS_LINK ].slice(0, 2);
