@@ -8,7 +8,9 @@ const NavigationBar = ({ currentUser, linksList, onLogout }) => {
 
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
+  const onLinkClick = link => navigate(link);
+  
+  const onClickLogout = () => {
     onLogout();
     localStorage.removeItem('token');
     navigate('/login');
@@ -18,13 +20,13 @@ const NavigationBar = ({ currentUser, linksList, onLogout }) => {
     <nav className={styles.navBar}>
       {currentUser['role'] ?
         <Fragment>
-          {linksList.map(link => <a className={styles.ankor} key={link}><p className={styles.link}>{link}</p></a>)}
-          <a className={styles.ankor} onClick={onClickHandler}><p className={`${styles.link} ${styles.logout}`}>{LOGOUT_LINK}</p></a>
+          {linksList.map(link => <button className={`${styles.ankor} ${styles.link}`} key={link} onClick={() => onLinkClick(link)}>{link}</button>)}
+          <button className={`${styles.ankor} ${styles.link}`} onClick={onClickLogout}>{LOGOUT_LINK}</button>
         </Fragment>
         :
         <Fragment>
-          <a className={styles.ankor}><p className={styles.link}>{SIGN_IN_LINK}</p></a>
-          <a className={styles.ankor}><p className={styles.link}>{SIGN_UP_LINK}</p></a>
+          <button className={`${styles.ankor} ${styles.link}`} onClick={() => onLinkClick('login')}>{SIGN_IN_LINK}</button>
+          <button className={`${styles.ankor} ${styles.link}`}>{SIGN_UP_LINK}</button>
         </Fragment>}
     </nav>
   );

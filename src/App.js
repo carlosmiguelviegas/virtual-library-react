@@ -15,7 +15,7 @@ const App = () => {
 
   const checkLogin = user => {
     setCurrentUser(user);
-    if ('admin' === user?.role) {
+    if ('admin' === currentUser?.role) {
       linksList = linksList;
     } else {
       linksList = linksList.slice(0, 2);
