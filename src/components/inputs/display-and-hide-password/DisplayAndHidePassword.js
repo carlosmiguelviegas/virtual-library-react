@@ -5,7 +5,7 @@ const DisplayAndHidePassword = ({ value, handlerOnChange }) => {
 
   return (
     <section className={styles.showPasswordInput}>
-      <input type={checkbox} value={value} onChange={handlerOnChange} />
+      <input type={'checkbox'} value={value} onChange={handlerOnChange} />
       <p className={styles.showPasswordLabel}>{SIGN_IN_SHOW_PASSWORD_LABEL}</p>
     </section>
   );

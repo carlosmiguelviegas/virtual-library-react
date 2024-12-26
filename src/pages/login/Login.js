@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import Button from '../../components/buttons/button/Button';
 import InputField from '../../components/inputs/input-field/InputField';
-import { SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_SHOW_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
+import { SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
+import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -48,8 +49,7 @@ const Login = ({ checkLogin }) => {
         <InputField type={'email'} label={SIGN_IN_EMAIL_LABEL} name={'email'} value={loginForm['email']} handlerOnChange={handlerOnChange} />
         <InputField type={showPassword ? 'text' : 'password'} label={SIGN_IN_PASSWORD_LABEL} name={'password'} value={loginForm['password']} handlerOnChange={handlerOnChange} />
         <section className={styles.showPasswordInput}>
-          <InputField type={'checkbox'} value={showPassword} handlerOnChange={handlerOnChangePassword} />
-          <p className={styles.showPasswordLabel}>{SIGN_IN_SHOW_PASSWORD_LABEL}</p>
+          <DisplayAndHidePassword value={showPassword} handlerOnChange={handlerOnChangePassword} />
         </section>
       </section>
       <section className={styles.buttonsSection}>

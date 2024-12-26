@@ -32,21 +32,3 @@
   flex-direction: row;
   justify-content: center;
 }
-
-.showPasswordInput {
-  display: flex;
-  flex-direction: row;
-  gap: 6px;
-  align-items: center;
-  position: relative;
-  top: -13px;
-  left: -39px;
-  margin-top: 6px;
-}
-
-.showPasswordLabel {
-  font-size: 14px;
-  font-weight: 500;
-  color: brown;
-  margin: 0px;
-}
