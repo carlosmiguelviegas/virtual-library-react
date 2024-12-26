@@ -11,16 +11,14 @@ import { BOOKS_LINK, HOME_LINK, USERS_LINK } from './utils/titles-and-labels';
 const App = () => {
 
   const [ currentUser, setCurrentUser ] = useState({ role: '' });
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-  let list;
+  let linksList = [ HOME_LINK, BOOKS_LINK, USERS_LINK ];
 
   const checkLogin = user => {
     setCurrentUser(user);
-    setIsLoggedIn(currentUser?.role ? true : false);
-    if (currentUser?.role && 'admin' === currentUser?.role) {
-      list = [ HOME_LINK, BOOKS_LINK, USERS_LINK ];
+    if ('admin' === user?.role) {
+      linksList = linksList;
     } else {
-      list = [ HOME_LINK, BOOKS_LINK, USERS_LINK ].slice(0, 2);
+      linksList = linksList.slice(0, 2);
     }
   };
 
@@ -30,7 +28,7 @@ const App = () => {
 
   return (
     <Fragment>
-      <NavigationBar isLoggedIn={isLoggedIn} list={list} onLogout={onLogout} />
+      <NavigationBar currentUser={currentUser} linksList={linksList} onLogout={onLogout} />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
