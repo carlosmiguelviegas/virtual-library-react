@@ -11,27 +11,23 @@ import { BOOKS_LINK, HOME_LINK, USERS_LINK } from './utils/titles-and-labels';
 const App = () => {
 
   const [ currentUser, setCurrentUser ] = useState({ role: '' });
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-  let list;
+  let linksList = [ HOME_LINK, BOOKS_LINK, USERS_LINK ];
 
   const checkLogin = user => {
     setCurrentUser(user);
-    setIsLoggedIn(currentUser?.role ? true : false);
-    if (currentUser?.role && 'admin' === currentUser?.role) {
-      list = [ HOME_LINK, BOOKS_LINK, USERS_LINK ];
+    if ('admin' === currentUser?.role) {
+      linksList = linksList;
     } else {
-      list = [ HOME_LINK, BOOKS_LINK, USERS_LINK ].slice(0, 2);
+      linksList = linksList.slice(0, 2);
     }
   };
 
-  const onLogout = () => {
-    
-  };
+  const onLogout = () => setCurrentUser({ role: '' });
 
   return (
     <Fragment>
-      <NavigationBar isLoggedIn={isLoggedIn} list={list} onLogout={onLogout} />
       <BrowserRouter>
+      <NavigationBar currentUser={currentUser} linksList={linksList} onLogout={onLogout} />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='users' element={<Users />}></Route>

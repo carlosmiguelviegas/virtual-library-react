@@ -7,7 +7,7 @@ import { USER_CARD_ADMIN_ROLE, USER_CARD_INFORMATION, USER_CARD_NAME, USER_CARD_
 const UserCard = ({ user, onDisableUser }) => {
 
   const handlerOnClick = () => {
-    onDisableUser(user['_id']); console.log(user['_id']);
+    onDisableUser(user['_id']);
   };
 
   return (

@@ -11,17 +11,14 @@
 
 .link {
   font-family: sans-serif;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   color: bisque;
 }
 
 .ankor {
-  text-decoration: none;
-  position: relative;
-  top: -4px;
-}
-
-.logout {
+  background-color: transparent;
+  border-color: transparent;
   cursor: pointer;
 }

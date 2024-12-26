@@ -1,25 +1,33 @@
 import { Fragment } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
 import { LOGOUT_LINK, SIGN_IN_LINK, SIGN_UP_LINK } from "../../../utils/titles-and-labels";
 
-const NavigationBar = ({ isLoggedIn, list, onLogout }) => {
+const NavigationBar = ({ currentUser, linksList, onLogout }) => {
 
-  /* const linksToDisplay = list.map(link => <a className={styles.ankor}><p className={styles.link}>{link}</p></a>); */
+  const navigate = useNavigate();
+
+  const onLinkClick = link => navigate(link);
+  
+  const onClickLogout = () => {
+    onLogout();
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
 
   return (
     <nav className={styles.navBar}>
-      {isLoggedIn ?
+      {currentUser['role'] ?
         <Fragment>
-          {list.map(link => <a className={styles.ankor}><p className={styles.link}>{link}</p></a>)}
-          <a className={styles.ankor} onClick={onLogout}><p className={styles.linkstyles.logout} >{LOGOUT_LINK}</p></a>
+          {linksList.map(link => <button className={`${styles.ankor} ${styles.link}`} key={link} onClick={() => onLinkClick(link)}>{link}</button>)}
+          <button className={`${styles.ankor} ${styles.link}`} onClick={onClickLogout}>{LOGOUT_LINK}</button>
         </Fragment>
         :
         <Fragment>
-          <a className={styles.ankor}><p className={styles.link}>{SIGN_IN_LINK}</p></a>
-          <a className={styles.ankor}><p className={styles.link}>{SIGN_UP_LINK}</p></a>
-        </Fragment>
-      }
+          <button className={`${styles.ankor} ${styles.link}`} onClick={() => onLinkClick('login')}>{SIGN_IN_LINK}</button>
+          <button className={`${styles.ankor} ${styles.link}`}>{SIGN_UP_LINK}</button>
+        </Fragment>}
     </nav>
   );
 
