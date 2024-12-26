@@ -22,14 +22,12 @@ const App = () => {
     }
   };
 
-  const onLogout = () => {
-    
-  };
+  const onLogout = () => setCurrentUser({ role: '' });
 
   return (
     <Fragment>
-      <NavigationBar currentUser={currentUser} linksList={linksList} onLogout={onLogout} />
       <BrowserRouter>
+      <NavigationBar currentUser={currentUser} linksList={linksList} onLogout={onLogout} />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='users' element={<Users />}></Route>
