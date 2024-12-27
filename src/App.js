@@ -1,34 +1,25 @@
 import { Fragment, useState } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NavigationBar from './components/layout/navigation-bar/NavigationBar';
+import Home from './pages/home/Home';
 import Users from './pages/users/Users';
 import Books from './pages/books/Books';
 import Login from './pages/login/Login';
-import Home from './pages/home/Home';
-import NavigationBar from './components/layout/navigation-bar/NavigationBar';
-import { BOOKS_LINK, HOME_LINK, USERS_LINK } from './utils/titles-and-labels';
 import Register from './pages/register/Register';
 
 const App = () => {
 
   const [ currentUser, setCurrentUser ] = useState({ role: '' });
-  let linksList = [ HOME_LINK, BOOKS_LINK, USERS_LINK ];
 
-  const checkLogin = user => {
-    setCurrentUser(user);
-    if ('admin' === currentUser?.role) {
-      linksList = linksList;
-    } else {
-      linksList = linksList.slice(0, 2);
-    }
-  };
+  const checkLogin = user => setCurrentUser(user);
 
   const onLogout = () => setCurrentUser({ role: '' });
 
   return (
     <Fragment>
       <BrowserRouter>
-      <NavigationBar currentUser={currentUser} linksList={linksList} onLogout={onLogout} />
+      <NavigationBar currentUser={currentUser} onLogout={onLogout} />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='users' element={<Users />}></Route>

@@ -2,9 +2,9 @@ import { Fragment } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
-import { LOGOUT_LINK, SIGN_IN_LINK, SIGN_UP_LINK } from "../../../utils/titles-and-labels";
+import { BOOKS_LINK, HOME_LINK, LOGOUT_LINK, SIGN_IN_LINK, SIGN_UP_LINK, USERS_LINK } from "../../../utils/titles-and-labels";
 
-const NavigationBar = ({ currentUser, linksList, onLogout }) => {
+const NavigationBar = ({ currentUser, onLogout }) => {
 
   const navigate = useNavigate();
 
@@ -15,6 +15,8 @@ const NavigationBar = ({ currentUser, linksList, onLogout }) => {
     localStorage.removeItem('token');
     navigate('/login');
   };
+
+  const linksList = 'admin' === currentUser?.role ? [ HOME_LINK, BOOKS_LINK, USERS_LINK ] : [ HOME_LINK, BOOKS_LINK, USERS_LINK ].slice(0, 2);
 
   return (
     <nav className={styles.navBar}>
