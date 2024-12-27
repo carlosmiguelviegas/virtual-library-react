@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import NavigationBar from './components/layout/navigation-bar/NavigationBar';
 import { BOOKS_LINK, HOME_LINK, USERS_LINK } from './utils/titles-and-labels';
+import Register from './pages/register/Register';
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='users' element={<Users />}></Route>
           <Route path='books' element={<Books />}></Route>
           <Route path='login' element={<Login checkLogin={checkLogin} />}></Route>
+          <Route path='signup' element={<Register checkLogin={checkLogin} />}></Route>
           <Route path='*' element={<Home />}></Route>
         </Routes>
       </BrowserRouter>

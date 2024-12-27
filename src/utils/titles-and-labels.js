@@ -18,6 +18,14 @@ const USER_CARD_USER_ROLE = 'User';
 const USERS_PAGE_TITLE = 'Library Users';
 const BOOKS_PAGE_TITLE = 'Library Books';
 const BOOKS_PAGE_CREATE_LABEL = 'Create';
+const SIGN_UP_TITLE = 'Register';
+const SIGN_UP_EMAIL_LABEL = 'Email';
+const SIGN_UP_NAME_LABEL = 'Name';
+const SIGN_UP_PASSWORD_LABEL = 'Password';
+const SIGN_UP_CONFIRM_PASSWORD_LABEL = 'Confirm password';
+const SIGN_UP_SHOW_PASSWORD_LABEL = 'Show Password';
+const SIGN_UP_BUTTON_LABEL = 'Sign up';
+const SIGN_UP_BUTTON_CANCEL_LABEL = 'Reset';
 
 export {  
           SIGN_IN_TITLE,
@@ -39,5 +47,13 @@ export {
           USER_CARD_USER_ROLE,
           USERS_PAGE_TITLE,
           BOOKS_PAGE_TITLE,
-          BOOKS_PAGE_CREATE_LABEL
+          BOOKS_PAGE_CREATE_LABEL,
+          SIGN_UP_TITLE,
+          SIGN_UP_EMAIL_LABEL,
+          SIGN_UP_NAME_LABEL,
+          SIGN_UP_PASSWORD_LABEL,
+          SIGN_UP_CONFIRM_PASSWORD_LABEL,
+          SIGN_UP_SHOW_PASSWORD_LABEL,
+          SIGN_UP_BUTTON_LABEL,
+          SIGN_UP_BUTTON_CANCEL_LABEL
        };

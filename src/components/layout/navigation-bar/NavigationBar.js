@@ -26,7 +26,7 @@ const NavigationBar = ({ currentUser, linksList, onLogout }) => {
         :
         <Fragment>
           <button className={`${styles.ankor} ${styles.link}`} onClick={() => onLinkClick('login')}>{SIGN_IN_LINK}</button>
-          <button className={`${styles.ankor} ${styles.link}`}>{SIGN_UP_LINK}</button>
+          <button className={`${styles.ankor} ${styles.link}`} onClick={() => onLinkClick('signup')}>{SIGN_UP_LINK}</button>
         </Fragment>}
     </nav>
   );
