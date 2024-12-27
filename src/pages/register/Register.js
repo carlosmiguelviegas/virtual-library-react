@@ -15,7 +15,12 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
-    // it was intentional
+    setRegisterForm(
+      {
+        ...registerForm,
+        [event['target']['name']]: event['target']['value']
+      }
+    );
   };
 
   const handlerOnChangePassword = () => setShowPassword(showPassword => !showPassword);
