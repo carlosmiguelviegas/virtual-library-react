@@ -29,9 +29,7 @@ const Register = () => {
     // it was intentional
   };
 
-  const onReset = () => {
-
-  };
+  const onReset = () => setRegisterForm({ name: '', email: '', password: '', passwordConfirm: '' });
 
   return (
     <form className={styles.form} onSubmit={onRegisterNewUser}>
