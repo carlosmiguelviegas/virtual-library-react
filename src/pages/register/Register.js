@@ -5,10 +5,11 @@ import InputField from '../../components/inputs/input-field/InputField';
 import styles from './Register.module.css';
 import { SIGN_UP_CANCEL_LABEL, SIGN_UP_CONFIRM_PASSWORD_LABEL, SIGN_UP_EMAIL_LABEL, SIGN_UP_LABEL, SIGN_UP_NAME_LABEL, SIGN_UP_PASSWORD_LABEL, SIGN_UP_TITLE } from '../../utils/titles-and-labels';
 import Button from '../../components/buttons/button/Button';
+import axios from 'axios';
 
 const SIGN_UP_URL = 'http://localhost:8000/api/v1/users/signup';
 
-const Register = () => {
+const Register = ({ checkLogin }) => {
 
   const [ registerForm, setRegisterForm ] = useState({ name: '', email: '', password: '', passwordConfirm: '' });
   const [ showPassword, setShowPassword ] = useState(false);
@@ -25,8 +26,15 @@ const Register = () => {
 
   const handlerOnChangePassword = () => setShowPassword(showPassword => !showPassword);
 
-  const onRegisterNewUser = () => {
-    // it was intentional
+  const onRegisterNewUser = event => {
+    event.preventDefault();
+    axios.post(SIGN_UP_URL, registerForm)
+    .then((res) => {
+      checkLogin(res['data']);
+      localStorage.setItem('token', res['headers'].get('token'));
+      navigate('/home');
+    })
+    .catch(err => console.log(err));
   };
 
   const onReset = () => setRegisterForm({ name: '', email: '', password: '', passwordConfirm: '' });
