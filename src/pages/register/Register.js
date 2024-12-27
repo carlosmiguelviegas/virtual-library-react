@@ -6,6 +6,7 @@ import styles from './Register.module.css';
 import { SIGN_UP_BUTTON_CANCEL_LABEL, SIGN_UP_BUTTON_LABEL, SIGN_UP_CONFIRM_PASSWORD_LABEL, SIGN_UP_EMAIL_LABEL, SIGN_UP_NAME_LABEL, SIGN_UP_PASSWORD_LABEL, SIGN_UP_TITLE } from '../../utils/titles-and-labels';
 import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
+import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 
 const SIGN_UP_URL = 'http://localhost:8000/api/v1/users/signup';
 
@@ -50,6 +51,9 @@ const Register = ({ checkLogin }) => {
         <section className={styles.row}>
           <InputField type={showPassword ? 'text' : 'password'} label={SIGN_UP_PASSWORD_LABEL} name={'password'} value={registerForm['password']} handlerOnChange={handlerOnChange} />
           <InputField type={showPassword ? 'text' : 'password'} label={SIGN_UP_CONFIRM_PASSWORD_LABEL} name={'passwordConfirm'} value={registerForm['passwordConfirm']} handlerOnChange={handlerOnChange} />
+        </section>
+        <section className={styles.showPasswordInput}>
+          <DisplayAndHidePassword value={showPassword} handlerOnChange={handlerOnChangePassword} />
         </section>
       </section>
       <section className={styles.buttonsSection}>

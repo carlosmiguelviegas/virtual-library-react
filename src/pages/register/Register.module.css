@@ -33,6 +33,11 @@
   gap: 30px;
 }
 
+.showPasswordInput {
+  position: relative;
+  left: 35px;
+}
+
 .buttonsSection {
   display: flex;
   flex-direction: row;
