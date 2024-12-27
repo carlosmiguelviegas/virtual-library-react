@@ -1,8 +1,6 @@
 import './Button.css';
 
-const Button = ({ type = 'button', func = 'primary', children }) => {
-
-  const onClickHandler = () => {};
+const Button = ({ type = 'button', func = 'primary', onClickHandler, children }) => {
 
   return (
     <button className={`button ${func === 'primary' ? 'primary' : 'secondary'}`} type={type} onClick={onClickHandler}>
