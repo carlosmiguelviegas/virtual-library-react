@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputField from '../../components/inputs/input-field/InputField';
 import styles from './Register.module.css';
-import { SIGN_UP_CANCEL_LABEL, SIGN_UP_CONFIRM_PASSWORD_LABEL, SIGN_UP_EMAIL_LABEL, SIGN_UP_LABEL, SIGN_UP_NAME_LABEL, SIGN_UP_PASSWORD_LABEL, SIGN_UP_TITLE } from '../../utils/titles-and-labels';
+import { SIGN_UP_BUTTON_CANCEL_LABEL, SIGN_UP_BUTTON_LABEL, SIGN_UP_CONFIRM_PASSWORD_LABEL, SIGN_UP_EMAIL_LABEL, SIGN_UP_NAME_LABEL, SIGN_UP_PASSWORD_LABEL, SIGN_UP_TITLE } from '../../utils/titles-and-labels';
 import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 
@@ -47,14 +47,14 @@ const Register = ({ checkLogin }) => {
       <section className={styles.contentContainer}>
         <InputField type={'text'} label={SIGN_UP_NAME_LABEL} name={'name'} value={registerForm['name']} handlerOnChange={handlerOnChange} />
         <InputField type={'email'} label={SIGN_UP_EMAIL_LABEL} name={'email'} value={registerForm['email']} handlerOnChange={handlerOnChange} />
-        <section class="row">
+        <section className={styles.row}>
           <InputField type={showPassword ? 'text' : 'password'} label={SIGN_UP_PASSWORD_LABEL} name={'password'} value={registerForm['password']} handlerOnChange={handlerOnChange} />
           <InputField type={showPassword ? 'text' : 'password'} label={SIGN_UP_CONFIRM_PASSWORD_LABEL} name={'passwordConfirm'} value={registerForm['passwordConfirm']} handlerOnChange={handlerOnChange} />
         </section>
       </section>
       <section className={styles.buttonsSection}>
-        <Button type={'submit'} label={SIGN_UP_LABEL} />
-        <Button label={SIGN_UP_CANCEL_LABEL} func="secondary" onClickHandler={onReset} />
+        <Button type={'submit'}>{SIGN_UP_BUTTON_LABEL}</Button>
+        <Button func={'secondary'} onClickHandler={onReset}>{SIGN_UP_BUTTON_CANCEL_LABEL}</Button>
       </section>
     </form>
   );

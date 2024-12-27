@@ -24,8 +24,8 @@ const SIGN_UP_NAME_LABEL = 'Name';
 const SIGN_UP_PASSWORD_LABEL = 'Password';
 const SIGN_UP_CONFIRM_PASSWORD_LABEL = 'Confirm password';
 const SIGN_UP_SHOW_PASSWORD_LABEL = 'Show Password';
-const SIGN_UP_LABEL = 'Sign up';
-const SIGN_UP_CANCEL_LABEL = 'Reset';
+const SIGN_UP_BUTTON_LABEL = 'Sign up';
+const SIGN_UP_BUTTON_CANCEL_LABEL = 'Reset';
 
 export {  
           SIGN_IN_TITLE,
@@ -54,6 +54,6 @@ export {
           SIGN_UP_PASSWORD_LABEL,
           SIGN_UP_CONFIRM_PASSWORD_LABEL,
           SIGN_UP_SHOW_PASSWORD_LABEL,
-          SIGN_UP_LABEL,
-          SIGN_UP_CANCEL_LABEL
+          SIGN_UP_BUTTON_LABEL,
+          SIGN_UP_BUTTON_CANCEL_LABEL
        };
