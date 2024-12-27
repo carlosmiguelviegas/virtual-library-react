@@ -45,8 +45,8 @@ const Register = ({ checkLogin }) => {
         <h2>{SIGN_UP_TITLE}</h2>
       </section>
       <section className={styles.contentContainer}>
-        <InputField type={'text'} label={SIGN_UP_NAME_LABEL} name={'name'} value={registerForm['name']} handlerOnChange={handlerOnChange} />
-        <InputField type={'email'} label={SIGN_UP_EMAIL_LABEL} name={'email'} value={registerForm['email']} handlerOnChange={handlerOnChange} />
+        <InputField type={'text'} label={SIGN_UP_NAME_LABEL} name={'name'} value={registerForm['name']} handlerOnChange={handlerOnChange} width={260} />
+        <InputField type={'email'} label={SIGN_UP_EMAIL_LABEL} name={'email'} value={registerForm['email']} handlerOnChange={handlerOnChange} width={260} />
         <section className={styles.row}>
           <InputField type={showPassword ? 'text' : 'password'} label={SIGN_UP_PASSWORD_LABEL} name={'password'} value={registerForm['password']} handlerOnChange={handlerOnChange} />
           <InputField type={showPassword ? 'text' : 'password'} label={SIGN_UP_CONFIRM_PASSWORD_LABEL} name={'passwordConfirm'} value={registerForm['passwordConfirm']} handlerOnChange={handlerOnChange} />
