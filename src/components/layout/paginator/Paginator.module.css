@@ -5,6 +5,9 @@
   gap: 12px;
   padding-right: 2px;
   padding-bottom: 38px;
+  position: relative;
+  top: 100px;
+  right: 362px;
 }
 
 .itemsPage, .pageNumber {
