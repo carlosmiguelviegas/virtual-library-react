@@ -9,7 +9,7 @@ import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE } from '../../utils/titles-an
 
 const GET_BOOKS_URL = '/books';
 
-const Books = () => {
+const Books = ({ currentUser }) => {
 
   const [ books, setBooks ] = useState([]);
 
@@ -38,7 +38,7 @@ const Books = () => {
       <h1 className={styles.title}>{BOOKS_PAGE_TITLE}</h1>
       <hr className={styles.divider} />
       <section className={styles.button}>
-      <Button>{BOOKS_PAGE_CREATE_LABEL}</Button>
+      {<Button>{BOOKS_PAGE_CREATE_LABEL}</Button>}
       </section>
       {/* <section className={styles.booksContainer}>
         {booksToDisplay}
