@@ -1,11 +1,14 @@
+import { PAGINATOR_PAGE_NUMBER } from '../../../utils/titles-and-labels';
 import styles from './Paginator.module.css';
 
-const Paginator = ({ event, clickHandler }) => {
+const Paginator = ({ event, totalElements, clickHandler }) => {
+
+  let totalNumberPages = Math.ceil(totalElements / event['pageSize']);
 
   nextPage = () => {
     event = { ...event,
               pageIndex: event['pageIndex'] + 1 };
-    /* PAGE_NUMBER_LABEL = PAGINATOR_PAGE_NUMBER(event['pageIndex'], totalNumberPages); */
+    PAGE_NUMBER_LABEL = PAGINATOR_PAGE_NUMBER(event['pageIndex'], totalNumberPages);
     clickHandler(event);
   };
 
