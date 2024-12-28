@@ -38,7 +38,7 @@ const Books = ({ currentUser }) => {
       <h1 className={styles.title}>{BOOKS_PAGE_TITLE}</h1>
       <hr className={styles.divider} />
       <section className={styles.button}>
-      {<Button>{BOOKS_PAGE_CREATE_LABEL}</Button>}
+      {'admin' === currentUser['role'] && <Button>{BOOKS_PAGE_CREATE_LABEL}</Button>}
       </section>
       {/* <section className={styles.booksContainer}>
         {booksToDisplay}
