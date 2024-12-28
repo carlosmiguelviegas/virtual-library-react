@@ -4,23 +4,24 @@ import { MdOutlineChevronLeft, MdOutlineChevronRight } from "react-icons/md";
 
 const Paginator = ({ pageEvent, totalElements, pageEventChangeHandler }) => {
 
-  let totalNumberPages = Math.ceil(totalElements / event['pageSize']);
+  let totalNumberPages = Math.ceil(totalElements / pageEvent['pageSize']);
+  let PAGE_NUMBER_LABEL;
 
-  nextPage = () => {
+  const nextPage = () => {
     pageEvent = { ...pageEvent,
               pageIndex: pageEvent['pageIndex'] + 1 };
     PAGE_NUMBER_LABEL = PAGINATOR_PAGE_NUMBER(pageEvent['pageIndex'], totalNumberPages);
     pageEventChangeHandler(pageEvent);
   };
 
-  previousPage = () => {
+  const previousPage = () => {
     pageEvent = { ...pageEvent,
               pageIndex: pageEvent['pageIndex'] - 1 };
     PAGE_NUMBER_LABEL = PAGINATOR_PAGE_NUMBER(pageEvent['pageIndex'], totalNumberPages);
     pageEventChangeHandler(pageEvent);
   };
 
-  changePageSize = event => {
+  const changePageSize = event => {
     pageEvent = { ...pageEvent,
                   pageSize: Number(event['target']['value']) };
     pageEventChangeHandler(pageEvent);
@@ -35,7 +36,7 @@ const Paginator = ({ pageEvent, totalElements, pageEventChangeHandler }) => {
         <option className={styles.option} value={12}>12</option>
       </select>
       <label className={styles.pageNumber}>{PAGE_NUMBER_LABEL}</label>
-      <section className={styles.buttons-section}>
+      <section className={styles.buttonsSection}>
         <MdOutlineChevronLeft className={`${styles.icon} ${pageEvent['pageIndex'] === 1 ? 'disabled' : ''}`} onClick={previousPage} />
         <MdOutlineChevronRight className={`${styles.icon} ${pageEvent['pageIndex'] === totalNumberPages ? 'disabled' : ''}`} onClick={nextPage} />
       </section>
