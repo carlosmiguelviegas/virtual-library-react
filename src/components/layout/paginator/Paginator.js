@@ -12,6 +12,13 @@ const Paginator = ({ event, totalElements, clickHandler }) => {
     clickHandler(event);
   };
 
+  previousPage = () => {
+    event = { ...event,
+              pageIndex: event['pageIndex'] - 1 };
+    PAGE_NUMBER_LABEL = PAGINATOR_PAGE_NUMBER(event['pageIndex'], totalNumberPages);
+    clickHandler(event);
+  };
+
   return (
     <section className={styles.container}>
       {/* <label className={styles.items-page}>{{ ITEMS_PAGE_LABEL }}</label>
