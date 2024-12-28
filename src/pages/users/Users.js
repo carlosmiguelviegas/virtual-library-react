@@ -12,6 +12,7 @@ const DISABLE_USER_URL = '/users/disable';
 const Users = () => {
 
   const [ users, setUsers ] = useState([]);
+  const [ pageEvent, setPageEvent ] = useState({ pageIndex: 1, pageSize: 4 });
 
   useEffect(() => {
 
