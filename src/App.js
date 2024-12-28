@@ -21,12 +21,12 @@ const App = () => {
       <BrowserRouter>
       <NavigationBar currentUser={currentUser} onLogout={onLogout} />
         <Routes>
-          <Route path='/' element={<Home />}></Route>
+          <Route path='/' element={<Home currentUser={currentUser} />}></Route>
           <Route path='users' element={<Users />}></Route>
-          <Route path='books' element={<Books />}></Route>
+          <Route path='books' element={<Books currentUser={currentUser} />}></Route>
           <Route path='login' element={<Login checkLogin={checkLogin} />}></Route>
           <Route path='signup' element={<Register checkLogin={checkLogin} />}></Route>
-          <Route path='*' element={<Home />}></Route>
+          <Route path='*' element={<Home currentUser={currentUser} />}></Route>
         </Routes>
       </BrowserRouter>
     </Fragment>
