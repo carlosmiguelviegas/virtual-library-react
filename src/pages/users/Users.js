@@ -18,12 +18,14 @@ const Users = () => {
 
   useEffect(() => {
 
+    const { pageIndex, pageSize } = pageEvent;
+
     const onGetAllActiveUsers = async() => {
   
       try {
-        const response = await api.get(GET_USERS_URL);
+        const response = await api.get(`${GET_USERS_URL}?page=${pageIndex}&limit=${pageSize}`);
         const usersList = response['data']['usersList'];
-        setUsers(users => users.concat([ ...usersList ]));
+        setUsers([ ...usersList ]);
         setTotalElements(response['data']['total']);
       } catch (err) {
         console.log(err);
@@ -33,7 +35,7 @@ const Users = () => {
 
     onGetAllActiveUsers();
   
-  }, []);
+  }, [pageEvent]);
 
   const onDisableUser = userId => {
 
