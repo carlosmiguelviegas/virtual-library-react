@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-right: 2px;
+  padding-bottom: 38px;
+  position: relative;
+  top: 100px;
+  right: 362px;
+}
+
+.itemsPage, .pageNumber {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: brown;
+  position: relative;
+  top: 3px;
+}
+
+.select {
+  color: brown;
+  background-color: blanchedalmond;
+  border-color: brown;
+  cursor: pointer;
+}
+
+.option {
+  background-color: blanchedalmond;
+}
+
+.buttonsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.icon {
+  font-size: 22px;
+  color: brown;
+  position: relative;
+  right: 7px;
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.disabled:active {
+  pointer-events: none;
+}
