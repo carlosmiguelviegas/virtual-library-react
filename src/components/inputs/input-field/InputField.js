@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import styles from './InputField.module.css';
+import { FIELD_INVALID_MAX_LENGTH, FIELD_INVALID_MIN_LENGTH, FIELD_REQUIRED, INVALID_EMAIL_ADDRESS } from './../../../utils/messages';
 
 const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
@@ -16,13 +17,13 @@ const InputField = ({ type = 'text', label, name, value, required = false, email
 
   const getValidationErrors = value => {
     if (required && !value) {
-      return 'The field is mandatory.';
+      return FIELD_REQUIRED;
     } else if (email && !value.match(isValidEmail)) {
-      return 'Please provide a valid email address.';
+      return INVALID_EMAIL_ADDRESS;
     } else if (maxLength && value.length > maxLength) {
-      return 'max';
+      return FIELD_INVALID_MAX_LENGTH(maxLength);
     } else if (minLength && value.length < minLength) {
-      return 'min';
+      return FIELD_INVALID_MIN_LENGTH(minLength);
     } else {
       return null;
     }
