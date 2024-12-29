@@ -13,6 +13,7 @@ const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 const Login = ({ checkLogin }) => {
 
   const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
+  const [ inputsFormError, setInputsFormError ] = useState({ email: null, password: null });
   const [ showPassword, setShowPassword ] = useState(false);
   const navigate = useNavigate();
 
@@ -22,6 +23,10 @@ const Login = ({ checkLogin }) => {
         ...loginForm,
         [event['target']['name']]: event['target']['value']
       }
+    );
+    setInputsFormError(!event['target']['value'] ? { ...inputsFormError, [event['target']['name']]: 'The field is mandatory.' }
+      :
+      { ...inputsFormError, [event['target']['name']]: null }
     );
   };
 
@@ -46,8 +51,8 @@ const Login = ({ checkLogin }) => {
         <h2>{SIGN_IN_TITLE}</h2>
       </section>
       <section className={styles.contentContainer}>
-        <InputField type={'email'} label={SIGN_IN_EMAIL_LABEL} name={'email'} value={loginForm['email']} handlerOnChange={handlerOnChange} />
-        <InputField type={showPassword ? 'text' : 'password'} label={SIGN_IN_PASSWORD_LABEL} name={'password'} value={loginForm['password']} handlerOnChange={handlerOnChange} />
+        <InputField type={'email'} label={SIGN_IN_EMAIL_LABEL} name={'email'} value={loginForm['email']} error={inputsFormError['email']} handlerOnChange={handlerOnChange} />
+        <InputField type={showPassword ? 'text' : 'password'} label={SIGN_IN_PASSWORD_LABEL} name={'password'} value={loginForm['password']} error={inputsFormError['password']} handlerOnChange={handlerOnChange} />
         <section className={styles.showPasswordInput}>
           <DisplayAndHidePassword value={showPassword} handlerOnChange={handlerOnChangePassword} />
         </section>
