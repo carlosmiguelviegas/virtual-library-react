@@ -3,6 +3,8 @@ import { useState } from 'react';
 import styles from './InputField.module.css';
 import { FIELD_INVALID_MAX_LENGTH, FIELD_INVALID_MIN_LENGTH, FIELD_REQUIRED, INVALID_EMAIL_ADDRESS } from './../../../utils/messages';
 
+const validEmailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
 const InputField = ({ type = 'text', label, name, value, required = false, email = false, minLength, maxLength, width = 189, handlerOnChange }) => {
 
   const [ inputFieldError, setInputFieldError ] = useState(null);
@@ -16,7 +18,7 @@ const InputField = ({ type = 'text', label, name, value, required = false, email
   const getValidationErrors = value => {
     if (required && !value) {
       return FIELD_REQUIRED;
-    } else if (email && !value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
+    } else if (email && !value.match(validEmailPattern)) {
       return INVALID_EMAIL_ADDRESS;
     } else if (maxLength && value.length > maxLength) {
       return FIELD_INVALID_MAX_LENGTH(maxLength);
