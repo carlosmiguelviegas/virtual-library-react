@@ -22,7 +22,7 @@ const Login = ({ checkLogin }) => {
         ...loginForm,
         [event['target']['name']]: event['target']['value']
       }
-    ); console.log(loginForm)
+    );
   };
 
   const handlerOnChangePassword = () => setShowPassword(showPassword => !showPassword);
@@ -47,7 +47,7 @@ const Login = ({ checkLogin }) => {
       </section>
       <section className={styles.contentContainer}>
         <InputField type={'email'} label={SIGN_IN_EMAIL_LABEL} name={'email'} value={loginForm['email']} required email handlerOnChange={handlerOnChange} />
-        <InputField type={showPassword ? 'text' : 'password'} label={SIGN_IN_PASSWORD_LABEL} name={'password'} value={loginForm['password']} required minLength={3} maxLength={5} handlerOnChange={handlerOnChange} />
+        <InputField type={showPassword ? 'text' : 'password'} label={SIGN_IN_PASSWORD_LABEL} name={'password'} value={loginForm['password']} required minLength={3} handlerOnChange={handlerOnChange} />
         <section className={styles.showPasswordInput}>
           <DisplayAndHidePassword value={showPassword} handlerOnChange={handlerOnChangePassword} />
         </section>
