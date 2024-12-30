@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import styles from './SelectDropdown.module.css';
-import { FIELD_REQUIRED } from '../../../utils/messages';
+import { checkIsRequiredError } from '../../../utils/validators/validators';
 
 const SelectDropdown = ({ label, list, required = false, handlerOnChange }) => {
 
@@ -10,17 +10,15 @@ const SelectDropdown = ({ label, list, required = false, handlerOnChange }) => {
   const optionsToDisplay = list.map(option => <option className={styles.option} value={option['code']} key={option['code']}>{option['label']}</option>);
 
   const onValidateInput = event => {
-    const error = checkIsRequiredError(event['target']['value']);
+    const error = checkIsRequiredError(required, event['target']['value']);
     setInputFieldError(error ? error : null);
     handlerOnChange(event);
   };
 
   const blurHandler = event => {
-    const error = checkIsRequiredError(event['target']['value']);
+    const error = checkIsRequiredError(required, event['target']['value']);
     setInputFieldError(error ? error : null);
   };
-
-  const checkIsRequiredError = value => required && !value ? FIELD_REQUIRED : null;
 
   return (
     <div className={styles.formControl}>
