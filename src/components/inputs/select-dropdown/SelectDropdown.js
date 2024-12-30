@@ -25,7 +25,7 @@ const SelectDropdown = ({ label, list, required = false, handlerOnChange }) => {
   return (
     <div className={styles.formControl}>
       <label className={styles.label}>{label}</label>
-      <select className={styles.select} onChange={onValidateInput} onBlur={blurHandler}>
+      <select className={`${styles.select} ${inputFieldError ? styles.error : ''} `} onChange={onValidateInput} onBlur={blurHandler}>
         {optionsToDisplay}
       </select>
       {inputFieldError && <div className={styles.errorClass}>{inputFieldError}</div>}

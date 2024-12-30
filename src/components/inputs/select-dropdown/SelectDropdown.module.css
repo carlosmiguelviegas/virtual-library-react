@@ -24,3 +24,14 @@
 .option {
   background-color: blanchedalmond;
 }
+
+.error {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid #ff0000;
+}
+
+.errorClass {
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #ff0000;
+}
