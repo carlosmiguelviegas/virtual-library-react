@@ -8,6 +8,7 @@ import Books from './pages/books/Books';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import AuthGuard from './guards/auth-guard';
+import AdminGuard from './guards/admin-guard';
 
 const App = () => {
 
@@ -24,7 +25,9 @@ const App = () => {
         <Routes>
           <Route element={<AuthGuard currentUser={currentUser} />}>
             <Route path='/' element={<Home currentUser={currentUser} />}></Route>
-            <Route path='users' element={<Users />}></Route>
+            <Route element={<AdminGuard currentUser={currentUser} restrictTo={'admin'} />}>
+              <Route path='users' element={<Users />}></Route>
+            </Route>
             <Route path='books' element={<Books currentUser={currentUser} />}></Route>
             <Route path='*' element={<Home currentUser={currentUser} />}></Route>
           </Route>
