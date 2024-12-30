@@ -1,11 +1,5 @@
-import { Navigate, Route } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const AuthGuard = ({ element, currentUser, ...rest }) => {
-
-  return (
-    <Route {...rest} element={currentUser['role'] ? element : <Navigate to={'/login'} /> } />
-  );
-
-};
+const AuthGuard = ({ currentUser }) => currentUser['role'] ? <Outlet /> : <Navigate to={'/login'} />
 
 export default AuthGuard;
