@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
 import styles from './InputField.module.css';
-import { FIELD_INVALID_MAX_LENGTH, FIELD_INVALID_MIN_LENGTH, FIELD_REQUIRED, INVALID_EMAIL_ADDRESS } from './../../../utils/messages';
-
-const validEmailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+import { checkIsEmailValid, checkIsRequiredError, checkMaxLengthError, checkMinLengthError } from '../../../utils/validators/validators';
 
 const InputField = ({ type = 'text', label, name, value, required = false, email = false, minLength, maxLength, width = 189, handlerOnChange }) => {
 
@@ -16,25 +14,17 @@ const InputField = ({ type = 'text', label, name, value, required = false, email
   };
 
   const checkValidationErrors = value => {
-    if (required && !value) {
-      return FIELD_REQUIRED;
-    } else if (email && !value.match(validEmailPattern)) {
-      return INVALID_EMAIL_ADDRESS;
-    } else if (maxLength && value.length > maxLength) {
-      return FIELD_INVALID_MAX_LENGTH(maxLength);
-    } else if (minLength && value.length < minLength) {
-      return FIELD_INVALID_MIN_LENGTH(minLength);
-    } else {
-      return null;
-    }
+    let error = checkIsRequiredError(required, value);
+    if (!error) error = checkIsEmailValid(email, value);
+    if (!error) error = checkMaxLengthError(maxLength, value);
+    if (!error) error = checkMinLengthError(minLength, value);
+    return error || null;
   };
 
   const blurHandler = event => {
-    const error = checkIsRequiredError(event['target']['value']);
+    const error = checkIsRequiredError(required, event['target']['value']);
     setInputFieldError(error ? error : null);
   };
-
-  const checkIsRequiredError = value => required && !value ? FIELD_REQUIRED : null;
 
   return (
     <section className={styles.formControl}>
