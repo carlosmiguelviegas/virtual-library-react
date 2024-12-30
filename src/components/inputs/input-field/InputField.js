@@ -10,12 +10,12 @@ const InputField = ({ type = 'text', label, name, value, required = false, email
   const [ inputFieldError, setInputFieldError ] = useState(null);
 
   const onValidateInput = event => {
-    const error = getValidationErrors(event['target']['value']);
+    const error = checkValidationErrors(event['target']['value']);
     setInputFieldError(error ? error : null);
     handlerOnChange(event);
   };
 
-  const getValidationErrors = value => {
+  const checkValidationErrors = value => {
     if (required && !value) {
       return FIELD_REQUIRED;
     } else if (email && !value.match(validEmailPattern)) {
@@ -29,10 +29,17 @@ const InputField = ({ type = 'text', label, name, value, required = false, email
     }
   };
 
+  const blurHandler = event => {
+    const error = checkIsRequiredError(event['target']['value']);
+    setInputFieldError(error ? error : null);
+  };
+
+  const checkIsRequiredError = value => required && !value ? FIELD_REQUIRED : null;
+
   return (
     <section className={styles.formControl}>
       <label className={styles.label}>{ label }</label>
-      <input className={`${styles.input} ${inputFieldError ? styles.error : ''} `} type={type} name={name} value={value} style={{width:` ${width}px`}} onChange={onValidateInput} />
+      <input className={`${styles.input} ${inputFieldError ? styles.error : ''} `} type={type} name={name} value={value} style={{width:` ${width}px`}} onChange={onValidateInput} onBlur={blurHandler} />
       {inputFieldError && <div className={styles.errorClass}>{inputFieldError}</div>}
     </section>
   );
