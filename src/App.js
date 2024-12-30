@@ -7,6 +7,8 @@ import Users from './pages/users/Users';
 import Books from './pages/books/Books';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import AuthGuard from './guards/auth-guard';
+import AdminGuard from './guards/admin-guard';
 
 const App = () => {
 
@@ -21,12 +23,16 @@ const App = () => {
       <BrowserRouter>
       <NavigationBar currentUser={currentUser} onLogout={onLogout} />
         <Routes>
-          <Route path='/' element={<Home currentUser={currentUser} />}></Route>
-          <Route path='users' element={<Users />}></Route>
-          <Route path='books' element={<Books currentUser={currentUser} />}></Route>
+          <Route element={<AuthGuard currentUser={currentUser} />}>
+            <Route path='/' element={<Home currentUser={currentUser} />}></Route>
+            <Route element={<AdminGuard currentUser={currentUser} restrictTo={'admin'} />}>
+              <Route path='users' element={<Users />}></Route>
+            </Route>
+            <Route path='books' element={<Books currentUser={currentUser} />}></Route>
+            <Route path='*' element={<Home currentUser={currentUser} />}></Route>
+          </Route>
           <Route path='login' element={<Login checkLogin={checkLogin} />}></Route>
           <Route path='signup' element={<Register checkLogin={checkLogin} />}></Route>
-          <Route path='*' element={<Home currentUser={currentUser} />}></Route>
         </Routes>
       </BrowserRouter>
     </Fragment>
