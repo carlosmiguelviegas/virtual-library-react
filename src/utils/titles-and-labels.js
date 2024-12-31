@@ -30,6 +30,9 @@ const PAGINATOR_ITEMS_PAGE = 'Items per page:';
 const PAGINATOR_PAGE_NUMBER = (min, total) => `Page ${min} of ${total}`;
 const PAGINATOR_NEXT_PAGE = 'Next page';
 const PAGINATOR_PREVIOUS_PAGE = 'Previous page';
+const NOTIFICATIONS_OK_LABEL = 'OK';
+const NOTIFICATIONS_YES_LABEL = 'Yes';
+const NOTIFICATIONS_NO_LABEL = 'No';
 
 export {  
           SIGN_IN_TITLE,
@@ -63,5 +66,8 @@ export {
           PAGINATOR_ITEMS_PAGE,
           PAGINATOR_PAGE_NUMBER,
           PAGINATOR_NEXT_PAGE,
-          PAGINATOR_PREVIOUS_PAGE
+          PAGINATOR_PREVIOUS_PAGE,
+          NOTIFICATIONS_OK_LABEL,
+          NOTIFICATIONS_YES_LABEL,
+          NOTIFICATIONS_NO_LABEL
        };
