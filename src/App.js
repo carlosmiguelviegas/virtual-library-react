@@ -28,9 +28,9 @@ const App = () => {
           <Route element={<AuthGuard currentUser={currentUser} />}>
             <Route path='/' element={<Home currentUser={currentUser} />}></Route>
             <Route element={<AdminGuard currentUser={currentUser} restrictTo={'admin'} />}>
-              <Route path='users' element={<Users />}></Route>
+              <Route path='users' element={<Suspense fallback={<Loading />}><Users /></Suspense>}></Route>
             </Route>
-            <Route path='books' element={<Books currentUser={currentUser} />}></Route>
+            <Route path='books' element={<Suspense fallback={<Loading />}><Books currentUser={currentUser} /></Suspense>}></Route>
             <Route path='*' element={<Home currentUser={currentUser} />}></Route>
           </Route>
           <Route path='login' element={<Login checkLogin={checkLogin} />}></Route>
