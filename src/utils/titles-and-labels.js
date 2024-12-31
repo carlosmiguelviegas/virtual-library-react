@@ -33,6 +33,8 @@ const PAGINATOR_PREVIOUS_PAGE = 'Previous page';
 const NOTIFICATIONS_OK_LABEL = 'OK';
 const NOTIFICATIONS_YES_LABEL = 'Yes';
 const NOTIFICATIONS_NO_LABEL = 'No';
+const SUCCESS_MESSAGE_TITLE = 'Success';
+const ERROR_MESSAGE_TITLE = 'Alert';
 
 export {  
           SIGN_IN_TITLE,
@@ -69,5 +71,7 @@ export {
           PAGINATOR_PREVIOUS_PAGE,
           NOTIFICATIONS_OK_LABEL,
           NOTIFICATIONS_YES_LABEL,
-          NOTIFICATIONS_NO_LABEL
+          NOTIFICATIONS_NO_LABEL,
+          SUCCESS_MESSAGE_TITLE,
+          ERROR_MESSAGE_TITLE
        };

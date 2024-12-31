@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 
 import styles from './NotificationsDialog.module.css';
+import Button from '../buttons/button/Button';
 import { NOTIFICATIONS_NO_LABEL, NOTIFICATIONS_OK_LABEL, NOTIFICATIONS_YES_LABEL } from '../../utils/titles-and-labels';
 
 const NotificationsDialog = ({ title, message, displayOneButton = true, onClose, onConfirm }) => {
@@ -12,10 +13,10 @@ const NotificationsDialog = ({ title, message, displayOneButton = true, onClose,
         <p className={styles.message}>{message}</p>
       </section>
       <section className={styles.buttonsSection}>
-        {displayOneButton && <Button onClick={onClose}>{NOTIFICATIONS_OK_LABEL}</Button>}
+        {displayOneButton && <Button onClickHandler={() => onClose(false)}>{NOTIFICATIONS_OK_LABEL}</Button>}
         {!displayOneButton && <Fragment>
-                                <Button onClick={onConfirm}>{NOTIFICATIONS_YES_LABEL}</Button>
-                                <Button func={'secondary'} onClick={onClose}>{NOTIFICATIONS_NO_LABEL}</Button>
+                                <Button onClickHandler={onConfirm}>{NOTIFICATIONS_YES_LABEL}</Button>
+                                <Button func={'secondary'} onClickHandler={() => onClose(false)}>{NOTIFICATIONS_NO_LABEL}</Button>
                               </Fragment>}
       </section>
     </section>
