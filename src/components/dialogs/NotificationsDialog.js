@@ -3,15 +3,7 @@ import { Fragment } from 'react';
 import styles from './NotificationsDialog.module.css';
 import { NOTIFICATIONS_NO_LABEL, NOTIFICATIONS_OK_LABEL, NOTIFICATIONS_YES_LABEL } from '../../utils/titles-and-labels';
 
-const NotificationsDialog = ({ title, message, displayOneButton = true }) => {
-
-  const onClose = () => {
-    // it was intentional
-  }
-
-  const onConfirm = () => {
-    // it was intentional
-  }
+const NotificationsDialog = ({ title, message, displayOneButton = true, onClose, onConfirm }) => {
 
   return (
     <section className={styles.modalContainer}>
