@@ -1,19 +1,24 @@
 import { Fragment, useState, useEffect } from "react";
+import { createPortal } from 'react-dom';
 
 import api from "../../utils/api";
 import UserCard from '../../components/cards/user-card/UserCard';
 import Loading from '../../components/spinner/loading/Loading';
 import styles from './Users.module.css';
-import { USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
+import { ERROR_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 import Paginator from "../../components/layout/paginator/Paginator";
+import NotificationsDialog from '../../components/dialogs/NotificationsDialog';
 
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
 
+const initialUsersState = { users: [], totalElements: 0 };
+
 const Users = () => {
 
-  const [ users, setUsers ] = useState([]);
-  const [ totalElements, setTotalElements ] = useState([]);
+  const [ state, setState ] = useState(initialUsersState);
+  const [ showModal, setShowModal ] = useState(false);
+  const [ error, setError, ] = useState(false);
   const [ pageEvent, setPageEvent ] = useState({ pageIndex: 1, pageSize: 4 });
 
   useEffect(() => {
@@ -25,8 +30,7 @@ const Users = () => {
       try {
         const response = await api.get(`${GET_USERS_URL}?page=${pageIndex}&limit=${pageSize}`);
         const usersList = response['data']['usersList'];
-        setUsers([ ...usersList ]);
-        setTotalElements(response['data']['total']);
+        setState({ users: [ ...usersList ], totalElements: response['data']['total'] });
       } catch (err) {
         console.log(err);
       }
@@ -40,12 +44,16 @@ const Users = () => {
   const onDisableUser = userId => {
 
     api.patch(`${DISABLE_USER_URL}/${userId}`)
-    .then(() => setUsers(users => users.filter(user => user['_id'] !== userId)))
-    .catch(err => console.log(err));
+    .then(() => setState(state => { return { ...state, users: state['users'].filter(user => user['_id'] !== userId) }}))
+    .catch(err => {
+      setShowModal(true);
+      setError(err['response']['data']['errors'][0]['message']);
+      }
+    );
 
   }
 
-  const usersListToDisplay = users.map(user => <UserCard key={user['_id']} user={user} onDisableUser={onDisableUser} />);
+  const usersListToDisplay = state['users'].map(user => <UserCard key={user['_id']} user={user} onDisableUser={onDisableUser} />);
 
   return !usersListToDisplay.length ? <Loading /> : (
     <Fragment>
@@ -56,7 +64,8 @@ const Users = () => {
           {usersListToDisplay}
         </section>
       </section>
-      <Paginator pageEvent={pageEvent} totalElements={totalElements} pageEventChangeHandler={setPageEvent} />
+      <Paginator pageEvent={pageEvent} totalElements={state['totalElements']} pageEventChangeHandler={setPageEvent} />
+      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
     </Fragment>
   );
 };
