@@ -8,10 +8,11 @@ import Button from '../../components/buttons/button/Button';
 import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE } from '../../utils/titles-and-labels';
 
 const GET_BOOKS_URL = '/books';
+const initialBooksState = { books: [], totalElements: 0 };
 
 const Books = ({ currentUser }) => {
 
-  const [ books, setBooks ] = useState([]);
+  const [ state, setState ] = useState(initialBooksState);
 
   useEffect(() => {
 
@@ -19,8 +20,7 @@ const Books = ({ currentUser }) => {
       
       try {
         const response = await api.get(GET_BOOKS_URL);
-        const totalElements = response['data']['total']; console.log(totalElements);
-        setBooks(books => books.concat([ ...response['data']['booksList'] ]));
+        setState({ books: [...response['data']['booksList']], totalElements: response['data']['total'] });
       } catch(err) {
         console.log(err);
       }
@@ -31,7 +31,7 @@ const Books = ({ currentUser }) => {
 
   }, []);
 
-  const booksToDisplay = books.map(book => <BookCard key={book['_id']} book={book} />)
+  const booksToDisplay = state['books'].map(book => <BookCard key={book['_id']} book={book} />)
 
   return !booksToDisplay.length ? <Loading /> : (
     <section>
