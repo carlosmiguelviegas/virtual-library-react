@@ -1,8 +1,25 @@
+.modal {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+}
+
 .modalContainer {
   width: 400px;
   height: 200px;
-  padding: 1px 40px;
+  border-radius: 30px;
   background-color: blanchedalmond;
+  position: relative;
+  top: 36.6vh;
+  left: 37.5vw;
+  padding: 1px 40px;
+  box-sizing: border-box;
+}
+
+.messageContainer {
+  height: 51px;
 }
 
 .buttonsSection {
