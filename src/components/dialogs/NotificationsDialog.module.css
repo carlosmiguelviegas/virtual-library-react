@@ -1,0 +1,36 @@
+.modal {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+}
+
+.modalContainer {
+  width: 400px;
+  height: 200px;
+  border-radius: 30px;
+  background-color: blanchedalmond;
+  position: relative;
+  top: 36.6vh;
+  left: 37.5vw;
+  padding: 1px 40px;
+  box-sizing: border-box;
+}
+
+.messageContainer {
+  height: 51px;
+}
+
+.buttonsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+}
+
+.title, .message {
+  color: brown;
+}
+

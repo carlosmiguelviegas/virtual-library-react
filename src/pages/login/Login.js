@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import Button from '../../components/buttons/button/Button';
 import InputField from '../../components/inputs/input-field/InputField';
-import { SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
+import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
+import { createPortal } from 'react-dom';
+import NotificationsDialog from '../../components/dialogs/NotificationsDialog';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -14,6 +16,8 @@ const Login = ({ checkLogin }) => {
 
   const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
   const [ showPassword, setShowPassword ] = useState(false);
+  const [ showModal, setShowModal ] = useState(false);
+  const [ error, setError, ] = useState(false);
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
@@ -37,7 +41,11 @@ const Login = ({ checkLogin }) => {
       localStorage.setItem('token', res['headers'].get('token'));
       navigate('/home');
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      setShowModal(true);
+      setError(err['response']['data']['errors'][0]['message']);
+    }
+    );
   };
 
   return (
@@ -55,6 +63,7 @@ const Login = ({ checkLogin }) => {
       <section className={styles.buttonsSection}>
         <Button type={'submit'}>{SIGN_IN_LABEL}</Button>
       </section>
+      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
     </form>
   );
 };
