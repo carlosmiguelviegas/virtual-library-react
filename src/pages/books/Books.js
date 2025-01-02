@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 import api from './../../utils/api';
 import BookCard from '../../components/cards/book-card/BookCard';
@@ -6,8 +7,7 @@ import Loading from '../../components/spinner/loading/Loading';
 import styles from './Books.module.css';
 import Button from '../../components/buttons/button/Button';
 import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE, ERROR_MESSAGE_TITLE, SUCCESS_MESSAGE_TITLE } from '../../utils/titles-and-labels';
-import { createPortal } from 'react-dom';
-import NotificationsDialog from '../../components/dialogs/NotificationsDialog';
+import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 
 const initialBooksState = { books: [], totalElements: 0 };
 const initialModalsState = { showNotifications: false, openAddBook: false, message: '' };

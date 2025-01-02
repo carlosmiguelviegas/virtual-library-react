@@ -7,7 +7,7 @@ import Loading from '../../components/spinner/loading/Loading';
 import styles from './Users.module.css';
 import { ERROR_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 import Paginator from "../../components/layout/paginator/Paginator";
-import NotificationsDialog from '../../components/dialogs/NotificationsDialog';
+import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';

@@ -8,7 +8,7 @@ import Button from '../../components/buttons/button/Button';
 import InputField from '../../components/inputs/input-field/InputField';
 import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
-import NotificationsDialog from '../../components/dialogs/NotificationsDialog';
+import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
