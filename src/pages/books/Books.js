@@ -36,7 +36,7 @@ const Books = ({ currentUser }) => {
 
   }, []);
 
-  const onOpenCreateBookDialog = () => { 
+  const onClickCreateBookButton = open => { 
     // it was intentional
   };
 
@@ -46,10 +46,6 @@ const Books = ({ currentUser }) => {
     .catch(err => setModalsState({ ...modalsState, showNotifications: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
-  const onCloseCreateBookDialog = () => { 
-    // it was intentional
-  };
-
   const booksToDisplay = state['books'].map(book => <BookCard key={book['_id']} book={book} />)
 
   return !booksToDisplay.length ? <Loading /> : (
@@ -57,12 +53,12 @@ const Books = ({ currentUser }) => {
       <h1 className={styles.title}>{BOOKS_PAGE_TITLE}</h1>
       <hr className={styles.divider} />
       <section className={styles.button}>
-      {'admin' === currentUser['role'] && <Button onClickHandler={onOpenCreateBookDialog}>{BOOKS_PAGE_CREATE_LABEL}</Button>}
+      {'admin' === currentUser['role'] && <Button onClickHandler={() => onClickCreateBookButton(true)}>{BOOKS_PAGE_CREATE_LABEL}</Button>}
       </section>
       {/* <section className={styles.booksContainer}>
         {booksToDisplay}
       </section> */}
-      {modalsState['openAddBook'] && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={onCloseCreateBookDialog} />, document.body)}
+      {modalsState['openAddBook'] && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => onClickCreateBookButton(false)} />, document.body)}
       {modalsState['showNotifications'] && createPortal(<NotificationsDialog title={SUCCESS_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotifications: false })} />, document.body)}
       {modalsState['showNotifications'] && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotifications: false })} />, document.body)}
     </section>
