@@ -11,7 +11,13 @@ const CreateBookDialog = () => {
   const [ createBookForm, setCreateBookForm ] = useState(initialState);
 
   const handlerOnChange = event => {
-    // it was intentional
+    const { name, value } = event['target'];
+    setCreateBookForm(
+      { 
+        ...createBookForm,
+        [name]: value
+      }
+    );
   };
 
   const submitHandler = event => {

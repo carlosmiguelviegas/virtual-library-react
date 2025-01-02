@@ -21,10 +21,11 @@ const Login = ({ checkLogin }) => {
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
+    const { name, value } = event['target'];
     setLoginForm(
       {
         ...loginForm,
-        [event['target']['name']]: event['target']['value']
+        [name]: value
       }
     );
   };

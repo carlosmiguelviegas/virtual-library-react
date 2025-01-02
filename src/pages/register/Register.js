@@ -17,10 +17,11 @@ const Register = ({ checkLogin }) => {
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
+    const { name, value } = event['target'];
     setRegisterForm(
       {
         ...registerForm,
-        [event['target']['name']]: event['target']['value']
+        [name]: value
       }
     );
   };
