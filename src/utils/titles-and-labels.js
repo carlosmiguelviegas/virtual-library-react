@@ -41,6 +41,11 @@ const BOOKS_DIALOG_CATEGORY = 'Category';
 const BOOKS_DIALOG_QUANTITY = 'Quantity';
 const BOOKS_DIALOG_CREATE_LABEL = 'Create';
 const BOOKS_DIALOG_CANCEL_LABEL = 'Cancel';
+const IT_LABEL = 'Information Technology';
+const SCIENCES_LABEL = 'Sciences';
+const MYSTERY_LABEL = 'Mystery';
+const CRIME_LABEL = 'Crime';
+const ROMANCE_LABEL = 'Romance';
 
 export {  
           SIGN_IN_TITLE,
@@ -85,5 +90,10 @@ export {
           BOOKS_DIALOG_CATEGORY,
           BOOKS_DIALOG_QUANTITY,
           BOOKS_DIALOG_CREATE_LABEL,
-          BOOKS_DIALOG_CANCEL_LABEL
+          BOOKS_DIALOG_CANCEL_LABEL,
+          IT_LABEL,
+          SCIENCES_LABEL,
+          MYSTERY_LABEL,
+          CRIME_LABEL,
+          ROMANCE_LABEL
        };
