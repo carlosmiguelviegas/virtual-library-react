@@ -42,10 +42,9 @@ const Books = ({ currentUser }) => {
   };
 
   const onAddBook = newBook => {
-    console.log(newBook);
-    /* api.post(CREATE_BOOK_URL, newBook)
+    api.post(CREATE_BOOK_URL, newBook)
     .then(res => setModalsState({ ...modalsState, showNotifications: true, message: res['message'] }))
-    .catch(err => setModalsState({ ...modalsState, showNotifications: true, message: err['response']['data']['errors'][0]['message'] })); */
+    .catch(err => setModalsState({ ...modalsState, showNotifications: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
   const booksToDisplay = state['books'].map(book => <BookCard key={book['_id']} book={book} />)

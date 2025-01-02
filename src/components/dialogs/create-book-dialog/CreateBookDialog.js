@@ -27,6 +27,7 @@ const CreateBookDialog = ({ onSetBook, onClose }) => {
   const submitHandler = event => {
     event.preventDefault();
     onSetBook(createBookForm);
+    onClose();
   };
 
   return (
@@ -39,11 +40,11 @@ const CreateBookDialog = ({ onSetBook, onClose }) => {
             <SelectDropdown label={BOOKS_DIALOG_CATEGORY} list={list} name={'category'} required handlerOnChange={handlerOnChange} />
             <InputField type={'number'} label={BOOKS_DIALOG_QUANTITY} name={'quantity'} value={createBookForm['quantity']} required handlerOnChange={handlerOnChange} />
           </section>
+          <section className={styles.buttonsSection}>
+            <Button type={'submit'}>{BOOKS_DIALOG_CREATE_LABEL}</Button>
+            <Button func={'secondary'} onClickHandler={onClose}>{BOOKS_DIALOG_CANCEL_LABEL}</Button>
+          </section>
         </form>
-        <section className={styles.buttonsSection}>
-          <Button type={'submit'}>{BOOKS_DIALOG_CREATE_LABEL}</Button>
-          <Button func={'secondary'} onClickHandler={() => onClose(false)}>{BOOKS_DIALOG_CANCEL_LABEL}</Button>
-        </section>
       </section>
     </section>
   );
