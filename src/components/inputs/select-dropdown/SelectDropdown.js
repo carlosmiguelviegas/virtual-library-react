@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './SelectDropdown.module.css';
 import { checkIsRequiredError } from '../../../utils/validators/validators';
 
-const SelectDropdown = ({ label, list, required = false, handlerOnChange }) => {
+const SelectDropdown = ({ label, list, name, required = false, handlerOnChange }) => {
 
   const [ inputFieldError, setInputFieldError ] = useState(null);
   
@@ -23,7 +23,7 @@ const SelectDropdown = ({ label, list, required = false, handlerOnChange }) => {
   return (
     <div className={styles.formControl}>
       <label className={styles.label}>{label}</label>
-      <select className={`${styles.select} ${inputFieldError ? styles.error : ''} `} onChange={onValidateInput} onBlur={blurHandler}>
+      <select className={`${styles.select} ${inputFieldError ? styles.error : ''} `} name={name} onChange={onValidateInput} onBlur={blurHandler}>
         {optionsToDisplay}
       </select>
       {inputFieldError && <div className={styles.errorClass}>{inputFieldError}</div>}
