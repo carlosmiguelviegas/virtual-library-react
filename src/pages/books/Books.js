@@ -36,8 +36,8 @@ const Books = ({ currentUser }) => {
 
   }, []);
 
-  const onClickCreateBookButton = open => { 
-    // it was intentional
+  const onClickCreateBookButton = option => { 
+    setModalsState({ ...modalsState, openAddBook: option });
   };
 
   const onAddBook = newBook => { 
