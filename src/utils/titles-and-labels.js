@@ -35,6 +35,12 @@ const NOTIFICATIONS_YES_LABEL = 'Yes';
 const NOTIFICATIONS_NO_LABEL = 'No';
 const SUCCESS_MESSAGE_TITLE = 'Success';
 const ERROR_MESSAGE_TITLE = 'Alert';
+const BOOKS_DIALOG_TITLE = 'Create Book';
+const BOOKS_DIALOG_TITLE_FIELD = 'Title';
+const BOOKS_DIALOG_CATEGORY = 'Category';
+const BOOKS_DIALOG_QUANTITY = 'Quantity';
+const BOOKS_DIALOG_CREATE_LABEL = 'Create';
+const BOOKS_DIALOG_CANCEL_LABEL = 'Cancel';
 
 export {  
           SIGN_IN_TITLE,
@@ -73,5 +79,11 @@ export {
           NOTIFICATIONS_YES_LABEL,
           NOTIFICATIONS_NO_LABEL,
           SUCCESS_MESSAGE_TITLE,
-          ERROR_MESSAGE_TITLE
+          ERROR_MESSAGE_TITLE,
+          BOOKS_DIALOG_TITLE,
+          BOOKS_DIALOG_TITLE_FIELD,
+          BOOKS_DIALOG_CATEGORY,
+          BOOKS_DIALOG_QUANTITY,
+          BOOKS_DIALOG_CREATE_LABEL,
+          BOOKS_DIALOG_CANCEL_LABEL
        };
