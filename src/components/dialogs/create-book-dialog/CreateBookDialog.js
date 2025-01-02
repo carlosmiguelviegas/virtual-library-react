@@ -7,7 +7,7 @@ import { BOOKS_DIALOG_CANCEL_LABEL, BOOKS_DIALOG_CATEGORY, BOOKS_DIALOG_CREATE_L
 
 const initialState = { title: '', category: '', quantity: '' };
 
-const CreateBookDialog = () => {
+const CreateBookDialog = ({ onSetBook }) => {
 
   const [ createBookForm, setCreateBookForm ] = useState(initialState);
 
@@ -22,7 +22,8 @@ const CreateBookDialog = () => {
   };
 
   const submitHandler = event => {
-    // it was intentional
+    event.preventDefault();
+    onSetBook(createBookForm);
   };
 
   return (
@@ -37,7 +38,7 @@ const CreateBookDialog = () => {
           </section>
         </form>
         <section className={styles.buttonsSection}>
-          <Button onClickHandler={onConfirm}>{BOOKS_DIALOG_CREATE_LABEL}</Button>
+          <Button type={'submit'}>{BOOKS_DIALOG_CREATE_LABEL}</Button>
           <Button func={'secondary'} onClickHandler={() => onClose(false)}>{BOOKS_DIALOG_CANCEL_LABEL}</Button>
         </section>
       </section>
