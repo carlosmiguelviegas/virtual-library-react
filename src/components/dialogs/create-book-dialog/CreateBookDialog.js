@@ -4,10 +4,11 @@ import InputField from '../../inputs/input-field/InputField';
 import SelectDropdown from './../../inputs/select-dropdown/SelectDropdown';
 import styles from './CreateBookDialog.module.css';
 import { BOOKS_DIALOG_CANCEL_LABEL, BOOKS_DIALOG_CATEGORY, BOOKS_DIALOG_CREATE_LABEL, BOOKS_DIALOG_QUANTITY, BOOKS_DIALOG_TITLE, BOOKS_DIALOG_TITLE_FIELD } from '../../../utils/titles-and-labels';
+import Button from '../../buttons/button/Button';
 
 const initialState = { title: '', category: '', quantity: '' };
 
-const CreateBookDialog = ({ onSetBook }) => {
+const CreateBookDialog = ({ onSetBook, onClose }) => {
 
   const [ createBookForm, setCreateBookForm ] = useState(initialState);
 

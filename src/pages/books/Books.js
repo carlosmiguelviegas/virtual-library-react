@@ -7,6 +7,7 @@ import Loading from '../../components/spinner/loading/Loading';
 import styles from './Books.module.css';
 import Button from '../../components/buttons/button/Button';
 import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE, ERROR_MESSAGE_TITLE, SUCCESS_MESSAGE_TITLE } from '../../utils/titles-and-labels';
+import CreateBookDialog from '../../components/dialogs/create-book-dialog/CreateBookDialog';
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 
 const initialBooksState = { books: [], totalElements: 0 };
@@ -40,10 +41,11 @@ const Books = ({ currentUser }) => {
     setModalsState({ ...modalsState, openAddBook: option });
   };
 
-  const onAddBook = newBook => { 
-    api.post(CREATE_BOOK_URL, newBook)
+  const onAddBook = newBook => {
+    console.log(newBook);
+    /* api.post(CREATE_BOOK_URL, newBook)
     .then(res => setModalsState({ ...modalsState, showNotifications: true, message: res['message'] }))
-    .catch(err => setModalsState({ ...modalsState, showNotifications: true, message: err['response']['data']['errors'][0]['message'] }));
+    .catch(err => setModalsState({ ...modalsState, showNotifications: true, message: err['response']['data']['errors'][0]['message'] })); */
   };
 
   const booksToDisplay = state['books'].map(book => <BookCard key={book['_id']} book={book} />)
@@ -58,7 +60,7 @@ const Books = ({ currentUser }) => {
       {/* <section className={styles.booksContainer}>
         {booksToDisplay}
       </section> */}
-      {modalsState['openAddBook'] && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => onClickCreateBookButton(false)} />, document.body)}
+      {modalsState['openAddBook'] && createPortal(<CreateBookDialog onSetBook={onAddBook} onClose={() => onClickCreateBookButton(false)} />, document.body)}
       {modalsState['showNotifications'] && createPortal(<NotificationsDialog title={SUCCESS_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotifications: false })} />, document.body)}
       {modalsState['showNotifications'] && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotifications: false })} />, document.body)}
     </section>
