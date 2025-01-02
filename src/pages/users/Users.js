@@ -18,7 +18,7 @@ const Users = () => {
 
   const [ state, setState ] = useState(initialUsersState);
   const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState(false);
+  const [ error, setError, ] = useState('');
   const [ pageEvent, setPageEvent ] = useState({ pageIndex: 1, pageSize: 4 });
 
   useEffect(() => {

@@ -17,7 +17,7 @@ const Login = ({ checkLogin }) => {
   const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
   const [ showPassword, setShowPassword ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState(false);
+  const [ error, setError, ] = useState('');
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
