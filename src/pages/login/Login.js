@@ -8,7 +8,7 @@ import Button from '../../components/buttons/button/Button';
 import InputField from '../../components/inputs/input-field/InputField';
 import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
-import NotificationsDialog from '../../components/dialogs/NotificationsDialog';
+import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -17,14 +17,15 @@ const Login = ({ checkLogin }) => {
   const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
   const [ showPassword, setShowPassword ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState(false);
+  const [ error, setError, ] = useState('');
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
+    const { name, value } = event['target'];
     setLoginForm(
       {
         ...loginForm,
-        [event['target']['name']]: event['target']['value']
+        [name]: value
       }
     );
   };

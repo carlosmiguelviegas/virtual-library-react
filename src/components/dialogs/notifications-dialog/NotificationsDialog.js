@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 
 import styles from './NotificationsDialog.module.css';
-import Button from '../buttons/button/Button';
-import { NOTIFICATIONS_NO_LABEL, NOTIFICATIONS_OK_LABEL, NOTIFICATIONS_YES_LABEL } from '../../utils/titles-and-labels';
+import Button from '../../buttons/button/Button';
+import { NOTIFICATIONS_NO_LABEL, NOTIFICATIONS_OK_LABEL, NOTIFICATIONS_YES_LABEL } from '../../../utils/titles-and-labels';
 
 const NotificationsDialog = ({ title, message, displayOneButton = true, onClose, onConfirm }) => {
 
