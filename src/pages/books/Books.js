@@ -19,7 +19,9 @@ const Books = ({ currentUser }) => {
   const [ state, setState ] = useState(initialBooksState);
   const [ modalsState, setModalsState ] = useState(initialModalsState);
 
-  useEffect(() => onGetAllBooks(), []);
+  useEffect(() => {
+    onGetAllBooks()
+  }, []);
 
   const onGetAllBooks = async() => {
       
