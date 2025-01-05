@@ -41,7 +41,7 @@ const Register = ({ checkLogin }) => {
     .catch(err => console.log(err));
   };
 
-  const onReset = () => setRegisterForm({ name: '', email: '', password: '', passwordConfirm: '' });
+  const onReset = () => setRegisterForm(initialRegisterFormState);
 
   return (
     <form className={styles.form} onSubmit={onRegisterNewUser}>
