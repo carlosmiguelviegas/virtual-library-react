@@ -13,13 +13,14 @@ const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
 
 const initialUsersState = { users: [], totalElements: 0 };
+const initialPageEventState = { pageIndex: 1, pageSize: 4 };
 
 const Users = () => {
 
   const [ state, setState ] = useState(initialUsersState);
   const [ showModal, setShowModal ] = useState(false);
   const [ error, setError, ] = useState('');
-  const [ pageEvent, setPageEvent ] = useState({ pageIndex: 1, pageSize: 4 });
+  const [ pageEvent, setPageEvent ] = useState(initialPageEventState);
 
   useEffect(() => {
 
