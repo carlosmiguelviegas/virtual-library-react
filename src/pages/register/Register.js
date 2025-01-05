@@ -8,11 +8,13 @@ import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 
+const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
+
 const SIGN_UP_URL = 'http://localhost:8000/api/v1/users/signup';
 
 const Register = ({ checkLogin }) => {
 
-  const [ registerForm, setRegisterForm ] = useState({ name: '', email: '', password: '', passwordConfirm: '' });
+  const [ registerForm, setRegisterForm ] = useState(initialRegisterFormState);
   const [ showPassword, setShowPassword ] = useState(false);
   const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ const Register = ({ checkLogin }) => {
     .catch(err => console.log(err));
   };
 
-  const onReset = () => setRegisterForm({ name: '', email: '', password: '', passwordConfirm: '' });
+  const onReset = () => setRegisterForm(initialRegisterFormState);
 
   return (
     <form className={styles.form} onSubmit={onRegisterNewUser}>

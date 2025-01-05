@@ -10,11 +10,13 @@ import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWO
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 
+const initialLoginFormState = { email: '', password: '' };
+
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
 const Login = ({ checkLogin }) => {
 
-  const [ loginForm, setLoginForm ] = useState({ email: '', password: '' });
+  const [ loginForm, setLoginForm ] = useState(initialLoginFormState);
   const [ showPassword, setShowPassword ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
   const [ error, setError, ] = useState('');
