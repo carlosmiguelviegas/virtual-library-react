@@ -2,7 +2,7 @@ import styles from './LoggedIcon.module.css';
 
 const LoggedIcon = ({ name, onToggle }) => {
   return (
-    <span onClick={onToggle}>{name}</span>
+    <span className={styles.icon} onClick={onToggle}>{name}</span>
   );
 };
 

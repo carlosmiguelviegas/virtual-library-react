@@ -30,7 +30,7 @@ const NavigationBar = ({ currentUser, onLogout }) => {
         <Fragment>
           {linksList.map(link => <button className={`${styles.ankor} ${styles.link}`} key={link} onClick={() => onLinkClick(link)}>{link}</button>)}
           <LoggedIcon name={currentUser['name']} onToggle={onToggleDropdown} />
-          {isDropdownOpen && createPortal(<LoggedIconDropdown onLogout={onClickLogout} />, document.body)}
+          {isDropdownOpen && createPortal(<LoggedIconDropdown currentUser={currentUser} onLogout={onClickLogout} />, document.body)}
         </Fragment>
         :
         <Fragment>
