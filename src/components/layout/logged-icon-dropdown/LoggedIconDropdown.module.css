@@ -1,6 +1,9 @@
 .dropdownContainer {
   width: 10%;
-  height: 10%;
+  height: 150px;
   border: 1px solid brown;
   background-color: blanchedalmond;
+  position: relative;
+  top: 40px;
+  left: -146px;
 }

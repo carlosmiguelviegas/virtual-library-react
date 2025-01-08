@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
 import { BOOKS_LINK, HOME_LINK, LOGOUT_LINK, SIGN_IN_LINK, SIGN_UP_LINK, USERS_LINK } from "../../../utils/titles-and-labels";
 import LoggedIcon from '../logged-icon/LoggedIcon';
+import LoggedIconDropdown from '../logged-icon-dropdown/LoggedIconDropdown';
 
 const NavigationBar = ({ currentUser, onLogout }) => {
 
@@ -26,6 +27,7 @@ const NavigationBar = ({ currentUser, onLogout }) => {
           {linksList.map(link => <button className={`${styles.ankor} ${styles.link}`} key={link} onClick={() => onLinkClick(link)}>{link}</button>)}
           <button className={`${styles.ankor} ${styles.link}`} onClick={onClickLogout}>{LOGOUT_LINK}</button>
           <LoggedIcon name={currentUser['name']} />
+          <LoggedIconDropdown />
         </Fragment>
         :
         <Fragment>
