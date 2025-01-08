@@ -1,8 +1,8 @@
 import styles from './LoggedIcon.module.css';
 
-const LoggedIcon = ({ name }) => {
+const LoggedIcon = ({ name, onToggle }) => {
   return (
-    name
+    <span onClick={onToggle}>{name}</span>
   );
 };
 
