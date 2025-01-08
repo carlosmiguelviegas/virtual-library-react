@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
@@ -8,6 +8,7 @@ import LoggedIconDropdown from '../logged-icon-dropdown/LoggedIconDropdown';
 
 const NavigationBar = ({ currentUser, onLogout }) => {
 
+  const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const navigate = useNavigate();
 
   const onLinkClick = link => navigate(link);
