@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
@@ -28,9 +29,9 @@ const NavigationBar = ({ currentUser, onLogout }) => {
       {currentUser['role'] ?
         <Fragment>
           {linksList.map(link => <button className={`${styles.ankor} ${styles.link}`} key={link} onClick={() => onLinkClick(link)}>{link}</button>)}
-          <button className={`${styles.ankor} ${styles.link}`} onClick={onClickLogout}>{LOGOUT_LINK}</button>
+          {/* <button className={`${styles.ankor} ${styles.link}`} onClick={onClickLogout}>{LOGOUT_LINK}</button> */}
           <LoggedIcon name={currentUser['name']} onToggle={onToggleDropdown} />
-          {isDropdownOpen && <LoggedIconDropdown />}
+          {isDropdownOpen && createPortal(<LoggedIconDropdown onLogout={onClickLogout} />, document.body)}
         </Fragment>
         :
         <Fragment>

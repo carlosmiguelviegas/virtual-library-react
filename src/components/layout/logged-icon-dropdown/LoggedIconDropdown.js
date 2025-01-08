@@ -1,6 +1,6 @@
 import styles from './LoggedIconDropdown.module.css';
 
-const LoggedIconDropdown = () => {
+const LoggedIconDropdown = ({ onLogout }) => {
   return (
     <section className={styles.dropdownContainer}>
       
