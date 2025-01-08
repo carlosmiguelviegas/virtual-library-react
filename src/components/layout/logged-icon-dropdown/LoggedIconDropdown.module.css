@@ -7,3 +7,7 @@
   top: 40px;
   left: 888px;
 }
+
+.option {
+  cursor: pointer;
+}
