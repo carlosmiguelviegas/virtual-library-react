@@ -13,9 +13,7 @@ const NavigationBar = ({ currentUser, onLogout }) => {
 
   const onLinkClick = link => navigate(link);
 
-  const onToggleDropdown = () => {
-    // it was intentional
-  };
+  const onToggleDropdown = () => setIsDropdownOpen(isDropdownOpen => !isDropdownOpen);
   
   const onClickLogout = () => {
     onLogout();
