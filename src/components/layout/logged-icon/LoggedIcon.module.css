@@ -1,0 +1,16 @@
+.icon {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: bisque;
+  position: relative;
+  top: 9px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.iconChevron {
+  color: bisque;
+  position: relative;
+  top: 2px;
+  left: 6px;
+}

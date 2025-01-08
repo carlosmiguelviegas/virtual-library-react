@@ -8,7 +8,9 @@ const SIGN_UP_LINK = 'register';
 const HOME_LINK = 'home';
 const BOOKS_LINK = 'books';
 const USERS_LINK = 'users';
-const LOGOUT_LINK = 'logout';
+const ICON_DROPDOWN_LOGOUT_LINK = 'Logout';
+const ICON_DROPDOWN_PROFILE_LINK = 'Profile';
+const ICON_DROPDOWN_ROLE = 'role:';
 const HOME_PAGE_WELCOME = 'Welcome';
 const USER_CARD_INFORMATION = 'Information';
 const USER_CARD_NAME = 'Name:';
@@ -58,7 +60,9 @@ export {
           HOME_LINK,
           BOOKS_LINK,
           USERS_LINK,
-          LOGOUT_LINK,
+          ICON_DROPDOWN_LOGOUT_LINK,
+          ICON_DROPDOWN_PROFILE_LINK,
+          ICON_DROPDOWN_ROLE,
           HOME_PAGE_WELCOME,
           USER_CARD_INFORMATION,
           USER_CARD_NAME,

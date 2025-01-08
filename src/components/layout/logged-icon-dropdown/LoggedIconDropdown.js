@@ -1,0 +1,15 @@
+import { ICON_DROPDOWN_LOGOUT_LINK, ICON_DROPDOWN_PROFILE_LINK } from '../../../utils/titles-and-labels';
+import styles from './LoggedIconDropdown.module.css';
+
+const LoggedIconDropdown = ({ currentUser, onLinkClick, onLogout }) => {
+  return (
+    <section className={styles.dropdownContainer}>
+      <p className={`${styles.userInfo} ${styles.name}`}>{currentUser['name']}</p>
+      <p className={`${styles.userInfo} ${styles.property}`}>{currentUser['role']}</p>
+      <span className={styles.option} onClick={onLinkClick}><p className={styles.optionButton}>{ICON_DROPDOWN_PROFILE_LINK}</p></span>
+      <span className={styles.option} onClick={onLogout}><p className={styles.optionButton}>{ICON_DROPDOWN_LOGOUT_LINK}</p></span>
+    </section>
+  );
+};
+
+export default LoggedIconDropdown;

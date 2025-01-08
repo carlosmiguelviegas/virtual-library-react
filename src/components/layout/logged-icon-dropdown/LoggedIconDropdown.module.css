@@ -1,0 +1,37 @@
+.dropdownContainer {
+  width: 160px;
+  height: 140px;
+  border-radius: 6px;
+  border-top-right-radius: 0px;
+  border: 1px solid brown;
+  background-color: blanchedalmond;
+  position: absolute;
+  top: 40px;
+  left: 888px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.userInfo {
+  color: brown;
+  margin: 0;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.property {
+  font-size: 14px;
+}
+
+.option {
+  margin: 0;
+  cursor: pointer;
+}
+
+.optionButton {
+  margin-bottom: 0;
+  cursor: pointer;
+}
