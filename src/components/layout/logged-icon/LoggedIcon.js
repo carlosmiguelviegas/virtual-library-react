@@ -1,7 +1,9 @@
 import styles from './LoggedIcon.module.css';
 
-const LoggedIcon = () => {
-  return ;
+const LoggedIcon = ({ name }) => {
+  return (
+    {name}
+  );
 };
 
 export default LoggedIcon;
