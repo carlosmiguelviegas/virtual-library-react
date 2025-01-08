@@ -1,1 +1,6 @@
-/* it was intentional */
+.dropdownContainer {
+  width: 10%;
+  height: 10%;
+  border: 1px solid brown;
+  background-color: blanchedalmond;
+}

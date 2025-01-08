@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
 import { BOOKS_LINK, HOME_LINK, LOGOUT_LINK, SIGN_IN_LINK, SIGN_UP_LINK, USERS_LINK } from "../../../utils/titles-and-labels";
-import LoggedIcon from '../logged-icon copy/LoggedIcon';
+import LoggedIcon from '../logged-icon/LoggedIcon';
 
 const NavigationBar = ({ currentUser, onLogout }) => {
 
