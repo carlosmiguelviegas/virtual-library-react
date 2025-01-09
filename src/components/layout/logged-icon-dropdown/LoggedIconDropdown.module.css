@@ -18,11 +18,13 @@
 }
 
 .name {
+  font-family: sans-serif;
   font-size: 18px;
   font-weight: 600;
 }
 
 .property {
+  font-family: sans-serif;
   font-size: 14px;
 }
 
@@ -32,6 +34,9 @@
 }
 
 .optionButton {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: brown;
+  font-weight: 800;
   margin-bottom: 0;
-  cursor: pointer;
 }
