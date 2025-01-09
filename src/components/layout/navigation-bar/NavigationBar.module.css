@@ -9,6 +9,21 @@
   padding-left: 0;
 }
 
+.icon {
+  font-size: 22px;
+  color: bisque;
+  position: relative;
+  top: -2px;
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .link {
   font-family: sans-serif;
   font-size: 16px;

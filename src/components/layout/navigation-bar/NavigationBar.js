@@ -6,6 +6,9 @@ import styles from './NavigationBar.module.css';
 import { BOOKS_LINK, HOME_LINK, SIGN_IN_LINK, SIGN_UP_LINK, USERS_LINK } from "../../../utils/titles-and-labels";
 import LoggedIcon from '../logged-icon/LoggedIcon';
 import LoggedIconDropdown from '../logged-icon-dropdown/LoggedIconDropdown';
+import { LiaHomeSolid } from "react-icons/lia";
+import { PiBooks } from "react-icons/pi";
+import { TbUserSquare } from "react-icons/tb";
 
 const NavigationBar = ({ currentUser, onLogout }) => {
 
@@ -22,13 +25,16 @@ const NavigationBar = ({ currentUser, onLogout }) => {
     navigate('/login');
   };
 
-  const linksList = 'admin' === currentUser?.role ? [ HOME_LINK, BOOKS_LINK, USERS_LINK ] : [ HOME_LINK, BOOKS_LINK, USERS_LINK ].slice(0, 2);
+  const linksList = 'admin' === currentUser?.role ? [ { path: HOME_LINK, icon: <LiaHomeSolid className={styles.icon} /> }, { path: BOOKS_LINK, icon: <PiBooks className={styles.icon} /> }, { path: USERS_LINK, icon: <TbUserSquare className={styles.icon} /> } ] : [ { path: HOME_LINK, icon: <LiaHomeSolid className={styles.icon} /> }, { path: BOOKS_LINK, icon: <PiBooks className={styles.icon} /> }, { path: USERS_LINK, icon: <TbUserSquare className={styles.icon} /> }  ].slice(0, 2);
 
   return (
     <nav className={styles.navBar}>
       {currentUser['role'] ?
         <Fragment>
-          {linksList.map(link => <button className={`${styles.ankor} ${styles.link}`} key={link} onClick={() => onLinkClick(link)}>{link}</button>)}
+          {linksList.map(link =>
+            (<span className={styles.linkContainer} key={link['path']} onClick={() => onLinkClick(link['path'])}>
+              {link['icon']}<button className={`${styles.ankor} ${styles.link}`}>{link['path']}</button>
+            </span>))}
           <LoggedIcon name={currentUser['name']} isDropdownOpen={isDropdownOpen} onToggle={onToggleDropdown} />
           {isDropdownOpen && createPortal(<LoggedIconDropdown currentUser={currentUser} onLogout={onClickLogout} />, document.body)}
         </Fragment>
