@@ -29,6 +29,9 @@
 }
 
 .option {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
   margin: 0;
   cursor: pointer;
 }
