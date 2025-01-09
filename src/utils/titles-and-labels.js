@@ -10,7 +10,8 @@ const BOOKS_LINK = 'books';
 const USERS_LINK = 'users';
 const ICON_DROPDOWN_LOGOUT_LINK = 'Logout';
 const ICON_DROPDOWN_PROFILE_LINK = 'Profile';
-const ICON_DROPDOWN_ROLE = 'role:';
+const ICON_DROPDOWN_ADMIN_ROLE = 'Admin';
+const ICON_DROPDOWN_USER_ROLE = 'User';
 const HOME_PAGE_WELCOME = 'Welcome';
 const USER_CARD_INFORMATION = 'Information';
 const USER_CARD_NAME = 'Name:';
@@ -62,7 +63,8 @@ export {
           USERS_LINK,
           ICON_DROPDOWN_LOGOUT_LINK,
           ICON_DROPDOWN_PROFILE_LINK,
-          ICON_DROPDOWN_ROLE,
+          ICON_DROPDOWN_ADMIN_ROLE,
+          ICON_DROPDOWN_USER_ROLE,
           HOME_PAGE_WELCOME,
           USER_CARD_INFORMATION,
           USER_CARD_NAME,
