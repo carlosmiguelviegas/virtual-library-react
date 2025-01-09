@@ -7,7 +7,7 @@
   background-color: blanchedalmond;
   position: absolute;
   top: 40px;
-  left: 888px;
+  left: 824px;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -18,20 +18,34 @@
 }
 
 .name {
+  font-family: sans-serif;
   font-size: 18px;
   font-weight: 600;
 }
 
 .property {
+  font-family: sans-serif;
   font-size: 14px;
 }
 
 .option {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
   margin: 0;
   cursor: pointer;
 }
 
+.icon {
+  color: brown;
+  position: relative;
+  top: 20px;
+} 
+
 .optionButton {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: brown;
+  font-weight: 800;
   margin-bottom: 0;
-  cursor: pointer;
 }
