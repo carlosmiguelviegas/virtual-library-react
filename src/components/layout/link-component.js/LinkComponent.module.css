@@ -1,0 +1,21 @@
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.link {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: bisque;
+}
+
+.ankor {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}

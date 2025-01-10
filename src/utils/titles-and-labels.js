@@ -5,6 +5,7 @@ const SIGN_IN_PASSWORD_LABEL = 'Password';
 const SIGN_IN_SHOW_PASSWORD_LABEL = 'Show Password';
 const SIGN_IN_LINK = 'login';
 const SIGN_UP_LINK = 'register';
+const SIGN_UP_LABEL = 'signup';
 const HOME_LINK = 'home';
 const BOOKS_LINK = 'books';
 const USERS_LINK = 'users';
@@ -58,6 +59,7 @@ export {
           SIGN_IN_SHOW_PASSWORD_LABEL,
           SIGN_IN_LINK,
           SIGN_UP_LINK,
+          SIGN_UP_LABEL,
           HOME_LINK,
           BOOKS_LINK,
           USERS_LINK,
