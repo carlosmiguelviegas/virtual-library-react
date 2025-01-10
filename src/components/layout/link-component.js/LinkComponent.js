@@ -1,3 +1,5 @@
+import styles from './LinkComponent.module.css';
+
 const LinkComponent = ({ link, onLinkClick }) => {
 
   return (
