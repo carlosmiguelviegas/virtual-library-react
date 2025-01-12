@@ -12,9 +12,14 @@ const getActiveUsersList = list => {
   return { type: USERS_ACTION_TYPES.SET_ACTIVE_USERS_LIST, payload: list };
 };
 
+const disableUser = userId => {
+  return { type: USERS_ACTION_TYPES.DISABLE_USER, payload: userId };
+};
+
 export {
           setCurrentUser,
           logoutUser,
-          getActiveUsersList
+          getActiveUsersList,
+          disableUser
         };
 

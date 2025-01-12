@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { createPortal } from 'react-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 import api from "../../utils/api";
 import UserCard from '../../components/cards/user-card/UserCard';
@@ -8,6 +9,8 @@ import styles from './Users.module.css';
 import { ERROR_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 import Paginator from "../../components/layout/paginator/Paginator";
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import { getActiveUsersList } from "../../store/users/users.action";
+import { selectActiveUsersList, selectTotalElements } from "../../store/users/users.selector";
 
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
@@ -17,10 +20,12 @@ const initialPageEventState = { pageIndex: 1, pageSize: 4 };
 
 const Users = () => {
 
-  const [ state, setState ] = useState(initialUsersState);
+  const activeUsers = useSelector(selectActiveUsersList);
+  const totalActieUvsers = useSelector(selectTotalElements);
   const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState('');
+  const [ error, setError ] = useState('');
   const [ pageEvent, setPageEvent ] = useState(initialPageEventState);
+  const dispatch = useDispatch();
 
   useEffect(() => {
 
@@ -31,7 +36,7 @@ const Users = () => {
       try {
         const response = await api.get(`${GET_USERS_URL}?page=${pageIndex}&limit=${pageSize}`);
         const usersList = response['data']['usersList'];
-        setState({ users: [ ...usersList ], totalElements: response['data']['total'] });
+        dispatch(getActiveUsersList({ users: [ ...usersList ], totalElements: response['data']['total'] }));
       } catch (err) {
         console.log(err);
       }
@@ -44,17 +49,17 @@ const Users = () => {
 
   const onDisableUser = userId => {
 
-    api.patch(`${DISABLE_USER_URL}/${userId}`)
-    .then(() => setState(state => { return { ...state, users: state['users'].filter(user => user['_id'] !== userId) }}))
+    /* api.patch(`${DISABLE_USER_URL}/${userId}`)
+    .then(() =>  setState(state => { return { ...state, users: state['users'].filter(user => user['_id'] !== userId) }}))
     .catch(err => {
       setShowModal(true);
       setError(err['response']['data']['errors'][0]['message']);
       }
-    );
+    ); */
 
   }
 
-  const usersListToDisplay = state['users'].map(user => <UserCard key={user['_id']} user={user} onDisableUser={onDisableUser} />);
+  const usersListToDisplay = activeUsers.map(user => <UserCard key={user['_id']} user={user} onDisableUser={onDisableUser} />);
 
   return !usersListToDisplay.length ? <Loading /> : (
     <Fragment>
@@ -65,7 +70,7 @@ const Users = () => {
           {usersListToDisplay}
         </section>
       </section>
-      <Paginator pageEvent={pageEvent} totalElements={state['totalElements']} pageEventChangeHandler={setPageEvent} />
+      <Paginator pageEvent={pageEvent} totalElements={totalActieUvsers} pageEventChangeHandler={setPageEvent} />
       {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
     </Fragment>
   );
