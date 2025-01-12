@@ -20,6 +20,8 @@ const usersReducer = (state = USERS_INITIAL_STATE, action = {}) => {
     case USERS_ACTION_TYPES['SET_ACTIVE_USERS_LIST']:
       const { users, totalElements } = payload;
       return { ...state, usersList: users, totalElements };
+    case USERS_ACTION_TYPES['DISABLE_USER']:
+      return { ...state, usersList: state['usersList'].filter(user => user['_id'] !== payload) };
     default:
       return state;
   }

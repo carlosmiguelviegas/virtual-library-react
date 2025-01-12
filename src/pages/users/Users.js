@@ -9,13 +9,12 @@ import styles from './Users.module.css';
 import { ERROR_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 import Paginator from "../../components/layout/paginator/Paginator";
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
-import { getActiveUsersList } from "../../store/users/users.action";
+import { disableUser, getActiveUsersList } from "../../store/users/users.action";
 import { selectActiveUsersList, selectTotalElements } from "../../store/users/users.selector";
 
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
 
-const initialUsersState = { users: [], totalElements: 0 };
 const initialPageEventState = { pageIndex: 1, pageSize: 4 };
 
 const Users = () => {
@@ -45,17 +44,17 @@ const Users = () => {
 
     onGetAllActiveUsers();
   
-  }, [pageEvent]);
+  }, [pageEvent, dispatch]);
 
   const onDisableUser = userId => {
 
-    /* api.patch(`${DISABLE_USER_URL}/${userId}`)
-    .then(() =>  setState(state => { return { ...state, users: state['users'].filter(user => user['_id'] !== userId) }}))
+    api.patch(`${DISABLE_USER_URL}/${userId}`)
+    .then(() => dispatch(disableUser(userId)))
     .catch(err => {
       setShowModal(true);
       setError(err['response']['data']['errors'][0]['message']);
       }
-    ); */
+    );
 
   }
 
