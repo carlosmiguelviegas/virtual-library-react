@@ -4,4 +4,12 @@ const setCurrentUser = user => {
   return { type: USERS_ACTION_TYPES.SET_CURRENT_USER, payload: user };
 };
 
-export default setCurrentUser;
+const logoutUser = () => {
+  return { type: USERS_ACTION_TYPES.LOGOUT, payload: null };
+};
+
+export {
+          setCurrentUser,
+          logoutUser
+        };
+

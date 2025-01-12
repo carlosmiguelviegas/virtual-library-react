@@ -10,7 +10,7 @@ import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
-import setCurrentUser from '../../store/users/users.action';
+import { setCurrentUser } from '../../store/users/users.action';
 
 const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
 

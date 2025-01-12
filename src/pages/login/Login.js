@@ -10,7 +10,7 @@ import InputField from '../../components/inputs/input-field/InputField';
 import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
-import setCurrentUser from './../../store/users/users.action';
+import { setCurrentUser } from './../../store/users/users.action';
 
 const initialLoginFormState = { email: '', password: '' };
 

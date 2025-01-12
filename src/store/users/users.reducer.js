@@ -1,7 +1,9 @@
 import USERS_ACTION_TYPES from './users.type';
 
+const NULL_USER = { role: '' };
+
 const USERS_INITIAL_STATE = {
-  currentUser: { role: '' },
+  currentUser: NULL_USER,
   usersList: []
 };
 
@@ -12,6 +14,8 @@ const usersReducer = (state = USERS_INITIAL_STATE, action = {}) => {
   switch (type) {
     case USERS_ACTION_TYPES['SET_CURRENT_USER']:
       return { ...state, currentUser: payload };
+    case USERS_ACTION_TYPES['LOGOUT']:
+      return { ...state, currentUser: NULL_USER };
     default:
       return state;
   }

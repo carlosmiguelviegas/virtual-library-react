@@ -14,18 +14,10 @@ const Register = lazy(() => import('./pages/register/Register'));
 
 const App = () => {
 
-  /* const [ currentUser, setCurrentUser ] = useState({ role: '' });
-
-  const checkLogin = user => setCurrentUser(user);
-
-  const onLogout = () => setCurrentUser({ role: '' }); */
-
-  const onLogout = () => ({ role: '' });
-
   return (
     <Fragment>
       <BrowserRouter>
-      <NavigationBar onLogout={onLogout} />
+      <NavigationBar />
         <Routes>
           <Route element={<AuthGuard />}>
             <Route path='/' element={<Home />}></Route>

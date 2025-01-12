@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
@@ -10,11 +10,13 @@ import LoggedIcon from '../logged-icon/LoggedIcon';
 import LoggedIconDropdown from '../logged-icon-dropdown/LoggedIconDropdown';
 import LinkComponent from '../link-component.js/LinkComponent';
 import { selectCurrentUser } from './../../../store/users/users.selector';
+import { logoutUser } from '../../../store/users/users.action';
 
-const NavigationBar = ({ onLogout }) => {
+const NavigationBar = () => {
 
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedOutLinksList = LOGGED_OUT_LINKS_LIST;
 
@@ -23,7 +25,7 @@ const NavigationBar = ({ onLogout }) => {
   const onToggleDropdown = () => setIsDropdownOpen(isDropdownOpen => !isDropdownOpen);
   
   const onClickLogout = () => {
-    onLogout();
+    dispatch(logoutUser());
     localStorage.removeItem('token');
     navigate('/login');
   };
