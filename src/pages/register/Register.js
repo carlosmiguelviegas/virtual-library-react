@@ -1,21 +1,28 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
 import InputField from '../../components/inputs/input-field/InputField';
 import styles from './Register.module.css';
-import { SIGN_UP_BUTTON_CANCEL_LABEL, SIGN_UP_BUTTON_LABEL, SIGN_UP_CONFIRM_PASSWORD_LABEL, SIGN_UP_EMAIL_LABEL, SIGN_UP_NAME_LABEL, SIGN_UP_PASSWORD_LABEL, SIGN_UP_TITLE } from '../../utils/titles-and-labels';
+import { ERROR_MESSAGE_TITLE, SIGN_UP_BUTTON_CANCEL_LABEL, SIGN_UP_BUTTON_LABEL, SIGN_UP_CONFIRM_PASSWORD_LABEL, SIGN_UP_EMAIL_LABEL, SIGN_UP_NAME_LABEL, SIGN_UP_PASSWORD_LABEL, SIGN_UP_TITLE } from '../../utils/titles-and-labels';
 import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
+import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import setCurrentUser from '../../store/users/users.action';
 
 const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
 
 const SIGN_UP_URL = 'http://localhost:8000/api/v1/users/signup';
 
-const Register = ({ checkLogin }) => {
+const Register = () => {
 
   const [ registerForm, setRegisterForm ] = useState(initialRegisterFormState);
   const [ showPassword, setShowPassword ] = useState(false);
+  const [ showModal, setShowModal ] = useState(false);
+  const [ error, setError, ] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
@@ -34,11 +41,15 @@ const Register = ({ checkLogin }) => {
     event.preventDefault();
     axios.post(SIGN_UP_URL, registerForm)
     .then((res) => {
-      checkLogin(res['data']);
+      dispatch(setCurrentUser(res['data']));
       localStorage.setItem('token', res['headers'].get('token'));
       navigate('/home');
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      setShowModal(true);
+      setError(err['response']['data']['errors'][0]['message']);
+      }
+    );
   };
 
   const onReset = () => setRegisterForm(initialRegisterFormState);
@@ -63,6 +74,7 @@ const Register = ({ checkLogin }) => {
         <Button type={'submit'}>{SIGN_UP_BUTTON_LABEL}</Button>
         <Button func={'secondary'} onClickHandler={onReset}>{SIGN_UP_BUTTON_CANCEL_LABEL}</Button>
       </section>
+      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
     </form>
   );
 
