@@ -1,5 +1,14 @@
+import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
-const AuthGuard = ({ currentUser }) => currentUser['role'] ? <Outlet /> : <Navigate to={'/login'} />
+import { selectCurrentUser } from "../store/users/users.selector";
+
+const AuthGuard = () => {
+
+  const currentUser = useSelector(selectCurrentUser);
+
+  return (currentUser['role'] ? <Outlet /> : <Navigate to={'/login'} />);
+
+}
 
 export default AuthGuard;
