@@ -8,8 +8,13 @@ const logoutUser = () => {
   return { type: USERS_ACTION_TYPES.LOGOUT, payload: null };
 };
 
+const getActiveUsersList = list => {
+  return { type: USERS_ACTION_TYPES.SET_ACTIVE_USERS_LIST, payload: list };
+};
+
 export {
           setCurrentUser,
-          logoutUser
+          logoutUser,
+          getActiveUsersList
         };
 
