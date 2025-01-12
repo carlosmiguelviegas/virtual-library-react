@@ -1,19 +1,19 @@
+import USERS_ACTION_TYPES from './users.type';
+
 const USERS_INITIAL_STATE = {
   currentUser: null,
   usersList: []
 };
 
-const usersReducer = (state = USERS_INITIAL__STATE, action = {}) => {
+const usersReducer = (state = USERS_INITIAL_STATE, action = {}) => {
 
   const { type, payload } = action;
 
   switch (type) {
-    case value:
+    case USERS_ACTION_TYPES['SET_CURRENT_USER']:
       return { ...state, currentUser: payload };
-      break;
     default:
       return state;
-      break;
   }
 
 };
