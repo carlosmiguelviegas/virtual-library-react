@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useSelector } from 'react-redux';
 
 import api from './../../utils/api';
 import BookCard from '../../components/cards/book-card/BookCard';
@@ -9,15 +10,17 @@ import Button from '../../components/buttons/button/Button';
 import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE, ERROR_MESSAGE_TITLE } from '../../utils/titles-and-labels';
 import CreateBookDialog from '../../components/dialogs/create-book-dialog/CreateBookDialog';
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import { selectCurrentUser } from '../../store/users/users.selector';
 
 const initialBooksState = { books: [], totalElements: 0 };
 const initialModalsState = { showNotifications: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
 
-const Books = ({ currentUser }) => {
+const Books = () => {
 
   const [ state, setState ] = useState(initialBooksState);
   const [ modalsState, setModalsState ] = useState(initialModalsState);
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
     onGetAllBooks()

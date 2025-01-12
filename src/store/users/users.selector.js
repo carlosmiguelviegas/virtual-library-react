@@ -1,7 +1,7 @@
-const selectCurrentUsers = state => {
+const selectCurrentUser = state => {
   return state['users']['currentUser'];
 };
 
 export {
-          selectCurrentUsers
+          selectCurrentUser
         };

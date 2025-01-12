@@ -1,7 +1,7 @@
 import USERS_ACTION_TYPES from './users.type';
 
 const USERS_INITIAL_STATE = {
-  currentUser: null,
+  currentUser: { role: '' },
   usersList: []
 };
 

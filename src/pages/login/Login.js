@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,17 +10,19 @@ import InputField from '../../components/inputs/input-field/InputField';
 import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import setCurrentUser from './../../store/users/users.action';
 
 const initialLoginFormState = { email: '', password: '' };
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
-const Login = ({ checkLogin }) => {
+const Login = () => {
 
   const [ loginForm, setLoginForm ] = useState(initialLoginFormState);
   const [ showPassword, setShowPassword ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
   const [ error, setError, ] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handlerOnChange = event => {
@@ -38,7 +41,7 @@ const Login = ({ checkLogin }) => {
     event.preventDefault();
     axios.post(LOGIN_URL, loginForm)
     .then((res) => {
-      checkLogin(res['data']);
+      dispatch(setCurrentUser(res['data']));
       // For now I'll use the local storage to keep the token
       // Later, the token will be retrieved using Redux
       localStorage.setItem('token', res['headers'].get('token'));
