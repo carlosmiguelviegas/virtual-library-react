@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +8,7 @@ import { ERROR_MESSAGE_TITLE, SIGN_UP_BUTTON_CANCEL_LABEL, SIGN_UP_BUTTON_LABEL,
 import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
-import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { setCurrentUser } from '../../store/users/users.action';
 
 const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
@@ -70,7 +69,7 @@ const Register = () => {
         <Button type={'submit'}>{SIGN_UP_BUTTON_LABEL}</Button>
         <Button func={'secondary'} onClickHandler={onReset}>{SIGN_UP_BUTTON_CANCEL_LABEL}</Button>
       </section>
-      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
+      <GeneralDialog showModal={modalsState['showNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['error']} onClose={() => setModalsState({ ...modalsState, showNotification: false })} />
     </form>
   );
 
