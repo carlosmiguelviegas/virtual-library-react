@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
@@ -9,8 +8,8 @@ import Button from '../../components/buttons/button/Button';
 import InputField from '../../components/inputs/input-field/InputField';
 import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
-import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 import { setCurrentUser } from './../../store/users/users.action';
+import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 
 const initialLoginFormState = { email: '', password: '' };
 const initialModalsState = { showNotification: false, error: '' };
@@ -47,11 +46,7 @@ const Login = () => {
       localStorage.setItem('token', res['headers'].get('token'));
       navigate('/home');
     })
-    .catch(err => {
-      setShowModal(true);
-      setError(err['response']['data']['errors'][0]['message']);
-      }
-    );
+    .catch(err => setModalsState({ showNotification: true, error: err['response']['data']['errors'][0]['message']}));
   };
 
   return (
@@ -69,8 +64,7 @@ const Login = () => {
       <section className={styles.buttonsSection}>
         <Button type={'submit'}>{SIGN_IN_LABEL}</Button>
       </section>
-      <GeneralDialog showModal={modalsState['showErrorNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['error']} onClose={() => setModalsState({ ...modalsState, showErrorNotification: false })} />
-      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
+      <GeneralDialog showModal={modalsState['showNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['error']} onClose={() => setModalsState({ ...modalsState, showNotification: false })} />
     </form>
   );
 };
