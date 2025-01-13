@@ -14,10 +14,10 @@ const NotificationsDialog = ({ title, message, displayOneButton = true, onClose,
           <p className={styles.message}>{message}</p>
         </section>
         <section className={styles.buttonsSection}>
-          {displayOneButton && <Button onClickHandler={() => onClose(false)}>{NOTIFICATIONS_OK_LABEL}</Button>}
+          {displayOneButton && <Button onClickHandler={onClose}>{NOTIFICATIONS_OK_LABEL}</Button>}
           {!displayOneButton && <Fragment>
                                   <Button onClickHandler={onConfirm}>{NOTIFICATIONS_YES_LABEL}</Button>
-                                  <Button func={'secondary'} onClickHandler={() => onClose(false)}>{NOTIFICATIONS_NO_LABEL}</Button>
+                                  <Button func={'secondary'} onClickHandler={onClose}>{NOTIFICATIONS_NO_LABEL}</Button>
                                 </Fragment>}
         </section>
       </section>

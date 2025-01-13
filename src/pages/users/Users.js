@@ -5,7 +5,7 @@ import api from "../../utils/api";
 import UserCard from '../../components/cards/user-card/UserCard';
 import Loading from '../../components/spinner/loading/Loading';
 import styles from './Users.module.css';
-import { ERROR_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
+import { ERROR_MESSAGE_TITLE, SUCCESS_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 import Paginator from "../../components/layout/paginator/Paginator";
 import { disableUser, getActiveUsersList } from "../../store/users/users.action";
 import { selectActiveUsersList, selectTotalElements } from "../../store/users/users.selector";
@@ -14,7 +14,7 @@ import GeneralDialog from "../../components/dialogs/general-dialog/GeneralDialog
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
 
-const initialModalsState = { showNotifications: false, error: '', message: '' };
+const initialModalsState = { showSuccessNotification: false, showErrorNotification: false, error: '', message: '' };
 const initialPageEventState = { pageIndex: 1, pageSize: 4 };
 
 const Users = () => {
@@ -48,12 +48,11 @@ const Users = () => {
   const onDisableUser = userId => {
 
     api.patch(`${DISABLE_USER_URL}/${userId}`)
-    .then(() => dispatch(disableUser(userId)))
-    .catch(err => {
-      setShowModal(true);
-      setError(err['response']['data']['errors'][0]['message']);
-      }
-    );
+    .then(res => {
+      dispatch(disableUser(userId));
+      setModalsState({ ...modalsState, showSuccessNotification: true, message: res['data']['message'] });
+      })
+    .catch(err => setModalsState({ ...modalsState, showErrorNotification: true, error: err['response']['data']['errors'][0]['message'] }));
 
   }
 
@@ -69,7 +68,8 @@ const Users = () => {
         </section>
       </section>
       <Paginator pageEvent={pageEvent} totalElements={totalActieUvsers} pageEventChangeHandler={setPageEvent} />
-      <GeneralDialog showModal={showModal} title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />
+      <GeneralDialog showModal={modalsState['showSuccessNotification']} title={SUCCESS_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showSuccessNotification: false })} />
+      <GeneralDialog showModal={modalsState['showErrorNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['error']} onClose={() => setModalsState({ ...modalsState, showErrorNotification: false })} />
     </Fragment>
   );
 };
