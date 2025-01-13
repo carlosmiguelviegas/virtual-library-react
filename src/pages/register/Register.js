@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
@@ -9,10 +8,11 @@ import { ERROR_MESSAGE_TITLE, SIGN_UP_BUTTON_CANCEL_LABEL, SIGN_UP_BUTTON_LABEL,
 import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
-import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { setCurrentUser } from '../../store/users/users.action';
 
 const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
+const initialModalsState = { showNotification: false, error: '' };
 
 const SIGN_UP_URL = 'http://localhost:8000/api/v1/users/signup';
 
@@ -20,8 +20,7 @@ const Register = () => {
 
   const [ registerForm, setRegisterForm ] = useState(initialRegisterFormState);
   const [ showPassword, setShowPassword ] = useState(false);
-  const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState('');
+  const [ modalsState, setModalsState ] = useState(initialModalsState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,11 +44,7 @@ const Register = () => {
       localStorage.setItem('token', res['headers'].get('token'));
       navigate('/home');
     })
-    .catch(err => {
-      setShowModal(true);
-      setError(err['response']['data']['errors'][0]['message']);
-      }
-    );
+    .catch(err => setModalsState({ showNotification: true, error: err['response']['data']['errors'][0]['message'] }));
   };
 
   const onReset = () => setRegisterForm(initialRegisterFormState);
@@ -74,7 +69,7 @@ const Register = () => {
         <Button type={'submit'}>{SIGN_UP_BUTTON_LABEL}</Button>
         <Button func={'secondary'} onClickHandler={onReset}>{SIGN_UP_BUTTON_CANCEL_LABEL}</Button>
       </section>
-      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
+      <GeneralDialog showModal={modalsState['showNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['error']} onClose={() => setModalsState({ ...modalsState, showNotification: false })} />
     </form>
   );
 

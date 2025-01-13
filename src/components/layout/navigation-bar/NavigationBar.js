@@ -20,7 +20,10 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const loggedOutLinksList = LOGGED_OUT_LINKS_LIST;
 
-  const onLinkClick = link => navigate(link);
+  const onLinkClick = link => {
+    navigate(link);
+    setIsDropdownOpen(false);
+  };
 
   const onToggleDropdown = () => setIsDropdownOpen(isDropdownOpen => !isDropdownOpen);
   
@@ -28,6 +31,7 @@ const NavigationBar = () => {
     dispatch(logoutUser());
     localStorage.removeItem('token');
     navigate('/login');
+    setIsDropdownOpen(false);
   };
 
   const loggedInLinksList = 'admin' === currentUser?.role ? LINKS_LIST : LINKS_LIST.slice(0, 2);
