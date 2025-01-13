@@ -1,5 +1,4 @@
 import { Fragment, useState, useEffect } from "react";
-import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import api from "../../utils/api";
@@ -8,9 +7,9 @@ import Loading from '../../components/spinner/loading/Loading';
 import styles from './Users.module.css';
 import { ERROR_MESSAGE_TITLE, USERS_PAGE_TITLE } from "../../utils/titles-and-labels";
 import Paginator from "../../components/layout/paginator/Paginator";
-import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
 import { disableUser, getActiveUsersList } from "../../store/users/users.action";
 import { selectActiveUsersList, selectTotalElements } from "../../store/users/users.selector";
+import GeneralDialog from "../../components/dialogs/general-dialog/GeneralDialog";
 
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
@@ -70,7 +69,7 @@ const Users = () => {
         </section>
       </section>
       <Paginator pageEvent={pageEvent} totalElements={totalActieUvsers} pageEventChangeHandler={setPageEvent} />
-      {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
+      <GeneralDialog showModal={showModal} title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />
     </Fragment>
   );
 };
