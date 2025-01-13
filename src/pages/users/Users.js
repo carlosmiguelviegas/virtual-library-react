@@ -14,14 +14,14 @@ import GeneralDialog from "../../components/dialogs/general-dialog/GeneralDialog
 const GET_USERS_URL = '/users';
 const DISABLE_USER_URL = '/users/disable';
 
+const initialModalsState = { showNotifications: false, error: '', message: '' };
 const initialPageEventState = { pageIndex: 1, pageSize: 4 };
 
 const Users = () => {
 
   const activeUsers = useSelector(selectActiveUsersList);
   const totalActieUvsers = useSelector(selectTotalElements);
-  const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError ] = useState('');
+  const [ modalsState, setModalsState ] = useState(initialModalsState);
   const [ pageEvent, setPageEvent ] = useState(initialPageEventState);
   const dispatch = useDispatch();
 
