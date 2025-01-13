@@ -13,6 +13,7 @@ import NotificationsDialog from '../../components/dialogs/notifications-dialog/N
 import { setCurrentUser } from './../../store/users/users.action';
 
 const initialLoginFormState = { email: '', password: '' };
+const initialModalsState = { showNotification: false, error: '' };
 
 const LOGIN_URL = 'http://localhost:8000/api/v1/users/login';
 
@@ -20,8 +21,7 @@ const Login = () => {
 
   const [ loginForm, setLoginForm ] = useState(initialLoginFormState);
   const [ showPassword, setShowPassword ] = useState(false);
-  const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState('');
+  const [ modalsState, setModalsState ] = useState(initialModalsState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -69,6 +69,7 @@ const Login = () => {
       <section className={styles.buttonsSection}>
         <Button type={'submit'}>{SIGN_IN_LABEL}</Button>
       </section>
+      <GeneralDialog showModal={modalsState['showErrorNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['error']} onClose={() => setModalsState({ ...modalsState, showErrorNotification: false })} />
       {showModal && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={error} onClose={setShowModal} />, document.body)}
     </form>
   );
