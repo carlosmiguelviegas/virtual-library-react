@@ -9,11 +9,11 @@ import styles from './Books.module.css';
 import Button from '../../components/buttons/button/Button';
 import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE, ERROR_MESSAGE_TITLE } from '../../utils/titles-and-labels';
 import CreateBookDialog from '../../components/dialogs/create-book-dialog/CreateBookDialog';
-import NotificationsDialog from '../../components/dialogs/notifications-dialog/NotificationsDialog';
+import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { selectCurrentUser } from '../../store/users/users.selector';
 
 const initialBooksState = { books: [], totalElements: 0 };
-const initialModalsState = { showNotifications: false, openAddBook: false, message: '' };
+const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
 
 const Books = () => {
@@ -42,7 +42,7 @@ const Books = () => {
   const onAddBook = newBook => {
     api.post(BOOKS_URL, newBook)
     .then(() => onGetAllBooks())
-    .catch(err => setModalsState({ ...modalsState, showNotifications: true, message: err['response']['data']['errors'][0]['message'] }));
+    .catch(err => setModalsState({ ...modalsState, showNotification: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
   const booksToDisplay = state['books'].map(book => <BookCard key={book['_id']} book={book} />)
@@ -58,7 +58,7 @@ const Books = () => {
         {booksToDisplay}
       </section> */}
       {modalsState['openAddBook'] && createPortal(<CreateBookDialog onSetBook={onAddBook} onClose={() => onClickCreateBookButton(false)} />, document.body)}
-      {modalsState['showNotifications'] && createPortal(<NotificationsDialog title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotifications: false })} />, document.body)}
+      <GeneralDialog showModal={modalsState['showNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotification: false })} />
     </section>
   );
 
