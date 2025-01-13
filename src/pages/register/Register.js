@@ -13,6 +13,7 @@ import NotificationsDialog from '../../components/dialogs/notifications-dialog/N
 import { setCurrentUser } from '../../store/users/users.action';
 
 const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
+const initialModalsState = { showNotification: false, error: '' };
 
 const SIGN_UP_URL = 'http://localhost:8000/api/v1/users/signup';
 
@@ -20,8 +21,7 @@ const Register = () => {
 
   const [ registerForm, setRegisterForm ] = useState(initialRegisterFormState);
   const [ showPassword, setShowPassword ] = useState(false);
-  const [ showModal, setShowModal ] = useState(false);
-  const [ error, setError, ] = useState('');
+  const [ modalsState, setModalsState ] = useState(initialModalsState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,11 +45,7 @@ const Register = () => {
       localStorage.setItem('token', res['headers'].get('token'));
       navigate('/home');
     })
-    .catch(err => {
-      setShowModal(true);
-      setError(err['response']['data']['errors'][0]['message']);
-      }
-    );
+    .catch(err => setModalsState({ showNotification: true, error: err['response']['data']['errors'][0]['message'] }));
   };
 
   const onReset = () => setRegisterForm(initialRegisterFormState);
