@@ -46,7 +46,7 @@ const NavigationBar = () => {
         </Fragment>
         :
         <Fragment>
-          <LinkComponent key={loggedOutLinksList[0]['path']} link={loggedOutLinksList[0]} onLinkClick={() => onLinkClick(loggedOutLinksList[0]['path'])} />
+          <LinkComponent key={loggedOutLinksList[0]['path']} link={loggedOutLinksList[0]} onLinkClick={() => onLinkClick(loggedOutLinksList[0]['path'].toLowerCase())} />
           <LinkComponent key={loggedOutLinksList[1]['path']} link={loggedOutLinksList[1]} onLinkClick={() => onLinkClick(SIGN_UP_LABEL)} />
         </Fragment>}
     </nav>
