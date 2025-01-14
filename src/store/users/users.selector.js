@@ -2,6 +2,10 @@ const selectCurrentUser = state => {
   return state['users']['currentUser'];
 };
 
+const selectCurrentToken = state => {
+  return state['users']['token'];
+};
+
 const selectActiveUsersList = state => {
   return state['users']['usersList'];
 };
@@ -12,6 +16,7 @@ const selectTotalElements = state => {
 
 export {
           selectCurrentUser,
+          selectCurrentToken,
           selectActiveUsersList,
           selectTotalElements
         };
