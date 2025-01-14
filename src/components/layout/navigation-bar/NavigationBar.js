@@ -10,7 +10,7 @@ import LoggedIcon from '../logged-icon/LoggedIcon';
 import LoggedIconDropdown from '../logged-icon-dropdown/LoggedIconDropdown';
 import LinkComponent from '../link-component.js/LinkComponent';
 import { selectCurrentUser } from './../../../store/users/users.selector';
-import { logoutUser } from '../../../store/users/users.action';
+import { logoutUser, removeToken } from '../../../store/users/users.action';
 
 const NavigationBar = () => {
 
@@ -29,7 +29,7 @@ const NavigationBar = () => {
   
   const onClickLogout = () => {
     dispatch(logoutUser());
-    localStorage.removeItem('token');
+    dispatch(removeToken());
     navigate('/login');
     setIsDropdownOpen(false);
   };
