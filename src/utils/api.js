@@ -1,15 +1,18 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 
-import { selectCurrentToken } from '../store/users/users.selector';
+let store;
 
 const api = axios.create({
   baseURL: 'http://localhost:8000/api/v1'
 });
 
+export const injectStore = _store => {
+  store = _store;
+};
+
 api.interceptors.request.use(config => {
 
-  const token = useSelector(selectCurrentToken);
+  const token = store.getState().users.token;
 
   config.headers.Authorization = `Bearer ${token}`;
   return config;
