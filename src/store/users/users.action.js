@@ -12,6 +12,10 @@ const logoutUser = () => {
   return { type: USERS_ACTION_TYPES['LOGOUT'], payload: null };
 };
 
+const removeToken = () => {
+  return { type: USERS_ACTION_TYPES['REMOVE_TOKEN'], payload: null };
+};
+
 const getActiveUsersList = list => {
   return { type: USERS_ACTION_TYPES['SET_ACTIVE_USERS_LIST'], payload: list };
 };
@@ -24,6 +28,7 @@ export {
           setCurrentUser,
           setToken,
           logoutUser,
+          removeToken,
           getActiveUsersList,
           disableUser
         };
