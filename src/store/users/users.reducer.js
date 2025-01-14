@@ -4,6 +4,7 @@ const NULL_USER = { role: '' };
 
 const USERS_INITIAL_STATE = {
   currentUser: NULL_USER,
+  token: null,
   usersList: [],
   totalElements: 0
 };
@@ -14,6 +15,8 @@ const usersReducer = (state = USERS_INITIAL_STATE, action = {}) => {
 
   switch (type) {
     case USERS_ACTION_TYPES['SET_CURRENT_USER']:
+      return { ...state, token: payload };
+    case USERS_ACTION_TYPES['SET_TOKEN']:
       return { ...state, currentUser: payload };
     case USERS_ACTION_TYPES['LOGOUT']:
       return { ...state, currentUser: NULL_USER };
