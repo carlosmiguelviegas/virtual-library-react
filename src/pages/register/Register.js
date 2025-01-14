@@ -9,7 +9,7 @@ import Button from '../../components/buttons/button/Button';
 import axios from 'axios';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
-import { setCurrentUser } from '../../store/users/users.action';
+import { setCurrentUser, setToken } from '../../store/users/users.action';
 
 const initialRegisterFormState = { name: '', email: '', password: '', passwordConfirm: '' };
 const initialModalsState = { showNotification: false, error: '' };
@@ -41,7 +41,7 @@ const Register = () => {
     axios.post(SIGN_UP_URL, registerForm)
     .then((res) => {
       dispatch(setCurrentUser(res['data']));
-      localStorage.setItem('token', res['headers'].get('token'));
+      dispatch(setToken(res['headers'].get('token')));
       navigate('/home');
     })
     .catch(err => setModalsState({ showNotification: true, error: err['response']['data']['errors'][0]['message'] }));
