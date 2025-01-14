@@ -9,7 +9,7 @@ import InputField from '../../components/inputs/input-field/InputField';
 import { ERROR_MESSAGE_TITLE, SIGN_IN_EMAIL_LABEL, SIGN_IN_LABEL, SIGN_IN_PASSWORD_LABEL, SIGN_IN_TITLE } from '../../utils/titles-and-labels';
 import DisplayAndHidePassword from '../../components/inputs/display-and-hide-password/DisplayAndHidePassword';
 import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
-import { setCurrentUser } from './../../store/users/users.action';
+import { setCurrentUser, setToken } from './../../store/users/users.action';
 
 const initialLoginFormState = { email: '', password: '' };
 const initialModalsState = { showNotification: false, error: '' };
@@ -41,9 +41,7 @@ const Login = () => {
     axios.post(LOGIN_URL, loginForm)
     .then((res) => {
       dispatch(setCurrentUser(res['data']));
-      // For now I'll use the local storage to keep the token
-      // Later, the token will be retrieved using Redux
-      localStorage.setItem('token', res['headers'].get('token'));
+      dispatch(setToken(res['headers'].get('token')));
       navigate('/home');
     })
     .catch(err => setModalsState({ showNotification: true, error: err['response']['data']['errors'][0]['message']}));
