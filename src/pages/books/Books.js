@@ -12,6 +12,7 @@ import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog
 import { selectCurrentUser } from '../../store/users/users.selector';
 import { setBooksPreview } from '../../store/books/books.action';
 import { selectBooksPreview } from '../../store/books/users.selector';
+import Preview from '../../components/containers/preview/Preview';
 
 const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
@@ -53,7 +54,7 @@ const Books = () => {
     .catch(err => setModalsState({ ...modalsState, showNotification: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
-  const preview = Object.keys(booksPreview).map(el => booksPreview[el]);
+  const preview = Object.keys(booksPreview).map(key => <Preview key={key} code={key} books={booksPreview[key]} />);
 
   return !preview.length ? <Loading /> : (
     <section>
@@ -62,9 +63,7 @@ const Books = () => {
       <section className={styles.button}>
       {'admin' === currentUser['role'] && <Button onClickHandler={() => onClickCreateBookButton(true)}>{BOOKS_PAGE_CREATE_LABEL}</Button>}
       </section>
-      {/* <section className={styles.booksContainer}>
-        {preview}
-      </section> */}
+      {preview}
       {modalsState['openAddBook'] && createPortal(<CreateBookDialog onSetBook={onAddBook} onClose={() => onClickCreateBookButton(false)} />, document.body)}
       <GeneralDialog showModal={modalsState['showNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotification: false })} />
     </section>

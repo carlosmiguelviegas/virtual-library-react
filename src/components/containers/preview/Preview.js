@@ -1,15 +1,13 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 
 import { IT_LABEL, SCIENCES_LABEL } from "../../../utils/titles-and-labels";
 import styles from './Preview.module.css';
 
 const Preview = ({ code, books }) => {
 
-  useEffect(() => {
-    mapTitle();
-  }, []);
+  const title = mapTitle();
 
-  const mapTitle = () => {
+  function mapTitle() {
     let title;
     switch (code) {
       case 'IT':
@@ -18,14 +16,18 @@ const Preview = ({ code, books }) => {
       case 'SC':
         title = SCIENCES_LABEL;
         break;
+      default:
+        title = IT_LABEL;
+        break;
     }
+    return title;
   };
 
   return (
     <Fragment>
       <h2>{title}</h2>
       <section className={styles}>
-        { books.map() }
+        { books.map(el => el['title']) }
       </section>
     </Fragment>
   );
