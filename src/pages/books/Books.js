@@ -14,12 +14,12 @@ import { selectCurrentUser } from '../../store/users/users.selector';
 
 const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
+const BOOKS_PREVIEW_URL = `${BOOKS_URL}/preview?categories=`;
 
-const categories = { computer: 'IT', science: 'SC' };
+const categories = 'IT,SC';
 
 const Books = () => {
 
-  const [ state, setState ] = useState({});
   const [ modalsState, setModalsState ] = useState(initialModalsState);
   const currentUser = useSelector(selectCurrentUser);
 
@@ -30,8 +30,8 @@ const Books = () => {
   const onGetAllBooks = async() => {
       
     try {
-      const response = await api.get(BOOKS_URL);
-      setState({ books: [...response['data']['booksList']], totalElements: response['data']['total'] });
+      const response = await api.get(`${BOOKS_PREVIEW_URL}${categories}`);
+      console.log(response);
     } catch(err) {
       console.log(err);
     }
@@ -46,7 +46,7 @@ const Books = () => {
     .catch(err => setModalsState({ ...modalsState, showNotification: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
-  const booksToDisplay = state['books'].map(book => <BookCard key={book['_id']} book={book} />)
+  const booksToDisplay = [ 'a' ]
 
   return !booksToDisplay.length ? <Loading /> : (
     <section>
