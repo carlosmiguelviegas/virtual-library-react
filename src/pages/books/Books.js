@@ -11,6 +11,7 @@ import CreateBookDialog from '../../components/dialogs/create-book-dialog/Create
 import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { selectCurrentUser } from '../../store/users/users.selector';
 import { setBooksPreview } from '../../store/books/books.action';
+import { selectBooksPreview } from '../../store/books/users.selector';
 
 const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
@@ -21,8 +22,9 @@ const categories = 'IT,SC';
 const Books = () => {
 
   const [ modalsState, setModalsState ] = useState(initialModalsState);
-  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
+  const booksPreview = useSelector(selectBooksPreview);
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
 
@@ -51,9 +53,9 @@ const Books = () => {
     .catch(err => setModalsState({ ...modalsState, showNotification: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
-  const booksToDisplay = [ 'a' ]
+  const preview = Object.keys(booksPreview).map(el => booksPreview[el]);
 
-  return !booksToDisplay.length ? <Loading /> : (
+  return !preview.length ? <Loading /> : (
     <section>
       <h1 className={styles.title}>{BOOKS_PAGE_TITLE}</h1>
       <hr className={styles.divider} />
@@ -61,7 +63,7 @@ const Books = () => {
       {'admin' === currentUser['role'] && <Button onClickHandler={() => onClickCreateBookButton(true)}>{BOOKS_PAGE_CREATE_LABEL}</Button>}
       </section>
       {/* <section className={styles.booksContainer}>
-        {booksToDisplay}
+        {preview}
       </section> */}
       {modalsState['openAddBook'] && createPortal(<CreateBookDialog onSetBook={onAddBook} onClose={() => onClickCreateBookButton(false)} />, document.body)}
       <GeneralDialog showModal={modalsState['showNotification']} title={ERROR_MESSAGE_TITLE} message={modalsState['message']} onClose={() => setModalsState({ ...modalsState, showNotification: false })} />
