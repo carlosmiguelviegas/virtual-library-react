@@ -12,15 +12,14 @@ import CreateBookDialog from '../../components/dialogs/create-book-dialog/Create
 import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { selectCurrentUser } from '../../store/users/users.selector';
 
-const initialBooksState = { books: [], totalElements: 0 };
 const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
 
-const categories = { computer: 'IT', science: 'SC' }
+const categories = { computer: 'IT', science: 'SC' };
 
 const Books = () => {
 
-  const [ state, setState ] = useState(initialBooksState);
+  const [ state, setState ] = useState({});
   const [ modalsState, setModalsState ] = useState(initialModalsState);
   const currentUser = useSelector(selectCurrentUser);
 
