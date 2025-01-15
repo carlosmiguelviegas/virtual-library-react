@@ -9,8 +9,8 @@ const booksReducer = (state = BOOKS_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case BOOKS_ACTION_TYPES['SET_CURRENT_USER']:
-      return { ...state, currentUser: payload };
+    case BOOKS_ACTION_TYPES['SET_BOOKS_PREVIEW']:
+      return { ...state, booksPreview: payload };
     default:
       return state;
   }
