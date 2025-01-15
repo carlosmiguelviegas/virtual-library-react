@@ -25,25 +25,29 @@ const Books = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onGetAllBooks()
-  }, []);
 
-  const onGetAllBooks = async() => {
+    const onGetBooksPreview = async() => {
       
-    try {
-      const response = await api.get(`${BOOKS_PREVIEW_URL}${categories}`);
-      dispatch(setBooksPreview(response['data']));
-    } catch(err) {
-      console.log(err);
-    }
+      try {
+        const response = await api.get(`${BOOKS_PREVIEW_URL}${categories}`);
+        dispatch(setBooksPreview(response['data']));
+      } catch(err) {
+        console.log(err);
+      }
 
-  };
+    };
+
+    onGetBooksPreview();
+
+  }, [dispatch]);
+
+  
 
   const onClickCreateBookButton = option => setModalsState({ ...modalsState, openAddBook: option });
 
   const onAddBook = newBook => {
     api.post(BOOKS_URL, newBook)
-    .then(() => onGetAllBooks())
+    .then(() => {})
     .catch(err => setModalsState({ ...modalsState, showNotification: true, message: err['response']['data']['errors'][0]['message'] }));
   };
 
