@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import api from './../../utils/api';
-import BookCard from '../../components/cards/book-card/BookCard';
 import Loading from '../../components/spinner/loading/Loading';
 import styles from './Books.module.css';
 import Button from '../../components/buttons/button/Button';
@@ -11,6 +10,7 @@ import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE, ERROR_MESSAGE_TITLE } from '
 import CreateBookDialog from '../../components/dialogs/create-book-dialog/CreateBookDialog';
 import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { selectCurrentUser } from '../../store/users/users.selector';
+import { setBooksPreview } from '../../store/books/books.action';
 
 const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
@@ -22,6 +22,7 @@ const Books = () => {
 
   const [ modalsState, setModalsState ] = useState(initialModalsState);
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     onGetAllBooks()
@@ -31,7 +32,7 @@ const Books = () => {
       
     try {
       const response = await api.get(`${BOOKS_PREVIEW_URL}${categories}`);
-      console.log(response);
+      dispatch(setBooksPreview(response['data']));
     } catch(err) {
       console.log(err);
     }
