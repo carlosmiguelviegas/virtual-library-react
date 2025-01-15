@@ -1,10 +1,10 @@
-import USERS_ACTION_TYPES from './books.type';
+import BOOKS_ACTION_TYPES from './books.type';
 
-const setCurrentUser = user => {
-  return { type: USERS_ACTION_TYPES['SET_CURRENT_USER'], payload: user };
+const setBooksPreview = preview => {
+  return { type: BOOKS_ACTION_TYPES['SET_BOOKS_PREVIEW'], payload: preview };
 };
 
 export {
-          setCurrentUser
+          setBooksPreview
         };
 
