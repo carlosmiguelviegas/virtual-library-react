@@ -16,6 +16,8 @@ const initialBooksState = { books: [], totalElements: 0 };
 const initialModalsState = { showNotification: false, openAddBook: false, message: '' };
 const BOOKS_URL = '/books';
 
+const categories = { computer: 'IT', science: 'SC' }
+
 const Books = () => {
 
   const [ state, setState ] = useState(initialBooksState);
