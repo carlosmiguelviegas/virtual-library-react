@@ -2,6 +2,7 @@ import { Fragment } from "react";
 
 import { IT_LABEL, SCIENCES_LABEL } from "../../../utils/titles-and-labels";
 import styles from './Preview.module.css';
+import BooksPreviewCard from "../../cards/books-preview-card/BooksPreviewCard";
 
 const Preview = ({ code, books }) => {
 
@@ -27,7 +28,7 @@ const Preview = ({ code, books }) => {
     <Fragment>
       <h2>{title}</h2>
       <section className={styles.previewContainer}>
-        { books.map(el => el['title']) }
+        { books.map(book => <BooksPreviewCard key={book['_id']} book={book} />) }
       </section>
     </Fragment>
   );

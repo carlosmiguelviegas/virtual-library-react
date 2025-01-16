@@ -1,0 +1,16 @@
+.bookCard {
+  width: 270px;
+  height: 270px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 8px rgba(128, 128, 128, 0.5);
+}
+
+.avatar {
+  width: 270px;
+}
+
+.property {
+  font-family: sans-serif;
+  font-size: 15px;
+}
