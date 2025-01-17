@@ -6,7 +6,7 @@ import api from './../../utils/api';
 import Loading from '../../components/spinner/loading/Loading';
 import styles from './Books.module.css';
 import Button from '../../components/buttons/button/Button';
-import { BOOKS_PAGE_CREATE_LABEL, BOOKS_PAGE_TITLE, ERROR_MESSAGE_TITLE } from '../../utils/titles-and-labels';
+import { BOOKS_PAGE_CREATE_LABEL, ERROR_MESSAGE_TITLE } from '../../utils/titles-and-labels';
 import CreateBookDialog from '../../components/dialogs/create-book-dialog/CreateBookDialog';
 import GeneralDialog from '../../components/dialogs/general-dialog/GeneralDialog';
 import { selectCurrentUser } from '../../store/users/users.selector';
