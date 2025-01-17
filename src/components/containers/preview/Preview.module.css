@@ -1,7 +1,16 @@
 .title {
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: brown;
+  align-self: start;
+  position: relative;
+  left: 98px;
+  padding-left: 10px;
+  margin: 10px 0;
   cursor: pointer;
 }
-
+ 
 .previewContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

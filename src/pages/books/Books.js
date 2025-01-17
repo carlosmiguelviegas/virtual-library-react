@@ -58,10 +58,8 @@ const Books = () => {
 
   return !preview.length ? <Loading /> : (
     <section>
-      <h1 className={styles.title}>{BOOKS_PAGE_TITLE}</h1>
-      <hr className={styles.divider} />
       <section className={styles.button}>
-      {'admin' === currentUser['role'] && <Button onClickHandler={() => onClickCreateBookButton(true)}>{BOOKS_PAGE_CREATE_LABEL}</Button>}
+        {'admin' === currentUser['role'] && <Button onClickHandler={() => onClickCreateBookButton(true)}>{BOOKS_PAGE_CREATE_LABEL}</Button>}
       </section>
       <section className={styles.previewsContainer}>{preview}</section>
       {modalsState['openAddBook'] && createPortal(<CreateBookDialog onSetBook={onAddBook} onClose={() => onClickCreateBookButton(false)} />, document.body)}
