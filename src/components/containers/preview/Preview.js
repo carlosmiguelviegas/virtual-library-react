@@ -26,7 +26,7 @@ const Preview = ({ code, books }) => {
 
   return (
     <Fragment>
-      <h2>{title}</h2>
+      <h2 className={styles.title}>{title}</h2>
       <section className={styles.previewContainer}>
         { books.map(book => <BooksPreviewCard key={book['_id']} book={book} />) }
       </section>
